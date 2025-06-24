@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
-import type { Metadata } from "next"
 import { Filter, SortAsc, SortDesc } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -11,16 +10,6 @@ import { ProductCard } from "@/components/product-card"
 import { ProductFilters } from "@/components/product-filters"
 import { products, categories } from "@/lib/products"
 import type { Product } from "@/lib/types"
-
-export const metadata: Metadata = {
-  title: "Productos - Catálogo completo",
-  description: "Explora nuestro catálogo completo de productos: herramientas eléctricas, medias sombras, lonas, materiales eléctricos, sanitarios y más. Venta al por mayor y menor.",
-  keywords: ["catálogo productos", "herramientas eléctricas", "medias sombras", "lonas", "materiales eléctricos", "sanitarios", "tejidos"],
-  openGraph: {
-    title: "Productos - Ferremarket | Catálogo completo",
-    description: "Explora nuestro amplio catálogo de productos para construcción, electricidad y más.",
-  },
-}
 
 export default function ProductsPage() {
   const searchParams = useSearchParams()

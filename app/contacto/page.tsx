@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-import type { Metadata } from "next"
 
 import { useState } from "react"
 import { Mail, MapPin, Phone } from "lucide-react"
@@ -11,16 +10,6 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
-
-export const metadata: Metadata = {
-  title: "Contacto - Comunícate con nosotros",
-  description: "Contacta a Ferremarket para consultas sobre herramientas, materiales de construcción y más. Horarios de atención, teléfono, email y ubicación en AMBA.",
-  keywords: ["contacto ferremarket", "teléfono ferretería", "dirección ferremarket", "horarios atención"],
-  openGraph: {
-    title: "Contacto - Ferremarket | Estamos aquí para ayudarte",
-    description: "Contacta a Ferremarket para todas tus consultas. Horarios de atención y múltiples formas de comunicación.",
-  },
-}
 
 export default function ContactPage() {
   const { toast } = useToast()
