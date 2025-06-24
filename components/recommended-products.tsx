@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { ProductCard } from "@/components/product-card"
 import { getRandomProducts } from "@/lib/products"
 
@@ -8,7 +9,12 @@ interface RecommendedProductsProps {
 }
 
 export function RecommendedProducts({ excludeId }: RecommendedProductsProps) {
-  const recommendedProducts = getRandomProducts(excludeId, 4)
+  const [recommendedProducts, setRecommendedProducts] = useState(() => getRandomProducts(excludeId, 4))
+
+  // Solo generar productos recomendados una vez cuando cambia el excludeId
+  useEffect(() => {
+    setRecommendedProducts(getRandomProducts(excludeId, 4))
+  }, [excludeId])
 
   if (recommendedProducts.length === 0) {
     return null

@@ -124,13 +124,13 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           </div>
 
           {product.images.length > 1 && (
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-              <div className="flex gap-2 min-w-fit">
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+              <div className="flex gap-3 min-w-fit px-1">
                 {product.images.map((image, index) => (
                   <button
                     key={index}
-                    className={`relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border bg-white transition-all sm:h-20 sm:w-20 ${
-                      selectedImage === index ? "ring-2 ring-primary" : "hover:ring-1 hover:ring-gray-300"
+                    className={`relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border-2 bg-white transition-all duration-200 sm:h-24 sm:w-24 ${
+                      selectedImage === index ? "border-primary ring-2 ring-primary/20" : "border-gray-200 hover:border-gray-300 hover:shadow-md"
                     }`}
                     onClick={() => setSelectedImage(index)}
                   >
@@ -138,7 +138,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                       src={image || "/placeholder.svg"}
                       alt={`${product.name} - Imagen ${index + 1}`}
                       fill
-                      className="object-contain"
+                      className="object-contain p-1"
                     />
                   </button>
                 ))}
