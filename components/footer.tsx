@@ -4,20 +4,20 @@ import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="bg-muted py-8 sm:py-12">
+    <footer className="bg-muted py-8 sm:py-12" role="contentinfo">
       <div className="container grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         <div className="space-y-4">
           <Link href="/" className="flex items-center space-x-2">
             <Image
               src="/logo1.png"
-              alt="Ferremarket Logo"
+              alt="Logo de Ferremarket - Tu ferretería de confianza"
               width={40}
               height={40}
             />
             <span className="font-bold">Ferremarket</span>
           </Link>
           <p className="text-sm text-muted-foreground">
-            15 años ofreciendo soluciones en ferretería con facilidad y rapidez.
+            Más de 15 años de historia familiar brindando soluciones con rapidez y confianza.
           </p>
           <div className="flex space-x-4">
             <Link href="https://facebook.com" className="text-muted-foreground hover:text-primary transition-colors">
@@ -30,7 +30,7 @@ export function Footer() {
             </Link>
           </div>
         </div>
-        <div>
+        <nav aria-label="Enlaces rápidos del sitio">
           <h3 className="mb-4 text-lg font-medium">Enlaces rápidos</h3>
           <ul className="space-y-2 text-sm">
             <li>
@@ -54,8 +54,8 @@ export function Footer() {
               </Link>
             </li>
           </ul>
-        </div>
-        <div>
+        </nav>
+        <nav aria-label="Categorías de productos">
           <h3 className="mb-4 text-lg font-medium">Categorías</h3>
           <ul className="space-y-2 text-sm">
             <li>
@@ -99,8 +99,8 @@ export function Footer() {
               </Link>
             </li>
           </ul>
-        </div>
-        <div>
+        </nav>
+        <address>
           <h3 className="mb-4 text-lg font-medium">Contacto</h3>
           <ul className="space-y-3 text-sm">
             <li className="flex items-start gap-2">
@@ -116,10 +116,10 @@ export function Footer() {
               <span className="text-muted-foreground">info@ferremarket.com</span>
             </li>
           </ul>
-        </div>
+        </address>
       </div>
       <div className="container mt-6 border-t pt-6 text-center text-sm text-muted-foreground sm:mt-8 sm:pt-8">
-        <p>© {new Date().getFullYear()} Ferremarket. Todos los derechos reservados.</p>
+        <p>© {new Date().getFullYear()} Ferremarket. Todos los derechos reservados. | Desarrollado por <Link href="https://nexiumsolutions.online/" className="text-primary hover:underline">Nexium Solutions</Link></p>
       </div>
     </footer>
   )

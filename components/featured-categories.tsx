@@ -7,19 +7,19 @@ const categories = [
     id: "herramientas-electricas",
     name: "Herramientas Eléctricas",
     description: "Herramientas eléctricas profesionales para todo tipo de trabajo",
-    image: "/placeholder.svg?height=300&width=300&text=Herramientas+Eléctricas",
+    image: "/herramientas.jpg",
   },
   {
     id: "medias-sombras-lonas",
     name: "Medias Sombras y Lonas",
     description: "Medias sombras y lonas para protección y cobertura",
-    image: "/placeholder.svg?height=300&width=300&text=Medias+Sombras+Lonas",
+    image: "/lonas.jpg",
   },
   {
     id: "sanitarios",
     name: "Sanitarios",
     description: "Artículos sanitarios y de plomería para baños y cocinas",
-    image: "/placeholder.svg?height=300&width=300&text=Sanitarios",
+    image: "/sanitarios.jpg",
   },
 ]
 

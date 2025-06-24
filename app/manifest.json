@@ -1,0 +1,29 @@
+{
+  "name": "Ferremarket - Tu ferretería de confianza",
+  "short_name": "Ferremarket",
+  "description": "Ferremarket: 15 años ofreciendo soluciones en ferretería, herramientas eléctricas, medias sombras, lonas y materiales de construcción en AMBA.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff6600",
+  "lang": "es-AR",
+  "dir": "ltr",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo1.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo2.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "shopping"],
+  "scope": "/",
+  "id": "com.ferremarket.app"
+} 

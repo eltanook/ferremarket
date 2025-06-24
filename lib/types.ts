@@ -10,6 +10,10 @@ export interface Product {
   stock: number
   featured: boolean
   specifications?: Record<string, string>
+  isRollProduct?: boolean
+  rollLength?: number // Largo del rollo en centímetros
+  rollPrice?: number // Precio por rollo completo
+  wholesalePrice?: number // Precio por mayor
 }
 
 export interface Category {

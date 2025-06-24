@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
+import type { Metadata } from "next"
 import { Filter, SortAsc, SortDesc } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,6 +11,16 @@ import { ProductCard } from "@/components/product-card"
 import { ProductFilters } from "@/components/product-filters"
 import { products, categories } from "@/lib/products"
 import type { Product } from "@/lib/types"
+
+export const metadata: Metadata = {
+  title: "Productos - Catálogo completo",
+  description: "Explora nuestro catálogo completo de productos: herramientas eléctricas, medias sombras, lonas, materiales eléctricos, sanitarios y más. Venta al por mayor y menor.",
+  keywords: ["catálogo productos", "herramientas eléctricas", "medias sombras", "lonas", "materiales eléctricos", "sanitarios", "tejidos"],
+  openGraph: {
+    title: "Productos - Ferremarket | Catálogo completo",
+    description: "Explora nuestro amplio catálogo de productos para construcción, electricidad y más.",
+  },
+}
 
 export default function ProductsPage() {
   const searchParams = useSearchParams()
@@ -101,7 +112,9 @@ export default function ProductsPage() {
 
   return (
     <div className="container py-4 sm:py-8">
-      <h1 className="mb-4 text-2xl font-bold sm:mb-6 sm:text-3xl">Nuestros Productos</h1>
+      <header>
+        <h1 className="mb-4 text-2xl font-bold sm:mb-6 sm:text-3xl">Nuestros Productos</h1>
+      </header>
 
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2">
@@ -166,11 +179,11 @@ export default function ProductsPage() {
             </div>
           ) : (
             <>
-              <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+              <section className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3" role="main" aria-label="Lista de productos">
                 {currentProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
-              </div>
+              </section>
 
               {totalPages > 1 && (
                 <div className="mt-8 flex justify-center">

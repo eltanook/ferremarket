@@ -19,12 +19,15 @@ type CartContextType = {
   updateQuantity: (id: string, quantity: number) => void
   clearCart: () => void
   totalPrice: number
+  isCartOpen: boolean
+  setIsCartOpen: (open: boolean) => void
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const [isCartOpen, setIsCartOpen] = useState(false)
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -77,6 +80,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         updateQuantity,
         clearCart,
         totalPrice,
+        isCartOpen,
+        setIsCartOpen,
       }}
     >
       {children}

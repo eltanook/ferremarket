@@ -10,6 +10,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useCart } from "@/components/cart-provider"
 import { getProductById } from "@/lib/products"
 import { RecommendedProducts } from "@/components/recommended-products"
+import { RollSelector } from "@/components/roll-selector"
+import { StructuredData } from "@/components/structured-data"
+import { formatPrice } from "@/lib/utils"
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter()
@@ -17,6 +20,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   const product = getProductById(id)
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState(0)
+  const [isPartialRoll, setIsPartialRoll] = useState(false)
+  const [partialLength, setPartialLength] = useState(0)
   const { addToCart } = useCart()
 
   if (!product) {
@@ -32,13 +37,34 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   }
 
   const handleAddToCart = () => {
-    for (let i = 0; i < quantity; i++) {
+    if (product.isRollProduct && isPartialRoll) {
+      // Agregar fracción de rollo al carrito
+      const partialPrice = (product.price * partialLength) / (product.rollLength || 1)
       addToCart({
         id: product.id,
-        name: product.name,
-        price: product.price,
+        name: `${product.name} (${(partialLength / 100).toFixed(1)}m)`,
+        price: partialPrice,
         image: product.images[0],
       })
+    } else {
+      // Agregar rollos completos al carrito
+      let rollPrice = product.rollPrice || product.price
+      let namePrefix = product.isRollProduct ? `${product.name} (Rollo 50m)` : product.name
+      
+      // Si hay precio por mayor y se compran 5 o más rollos
+      if (product.wholesalePrice && quantity >= 5) {
+        rollPrice = product.wholesalePrice
+        namePrefix = product.isRollProduct ? `${product.name} (Rollo 50m - Por Mayor)` : `${product.name} (Por Mayor)`
+      }
+      
+      for (let i = 0; i < quantity; i++) {
+        addToCart({
+          id: product.id,
+          name: namePrefix,
+          price: rollPrice,
+          image: product.images[0],
+        })
+      }
     }
   }
 
@@ -48,25 +74,47 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     }
   }
 
+  const handleRollQuantityChange = (qty: number, isPartial: boolean, length?: number) => {
+    setQuantity(qty)
+    setIsPartialRoll(isPartial)
+    if (length) setPartialLength(length)
+  }
+
+  const getDisplayPrice = () => {
+    if (product.isRollProduct && isPartialRoll) {
+      const partialPrice = (product.price * partialLength) / (product.rollLength || 1)
+      return partialPrice
+    }
+    // Si hay precio por mayor y se compran 5 o más rollos
+    if (product.wholesalePrice && quantity >= 5) {
+      return product.wholesalePrice
+    }
+    const rollPrice = product.rollPrice || product.price
+    return rollPrice
+  }
+
   return (
     <div className="container py-4 sm:py-8">
-      <Button
-        variant="ghost"
-        className="mb-4 flex items-center gap-1 sm:mb-6"
-        onClick={() => router.push("/productos")}
-      >
-        <ChevronLeft className="h-4 w-4" />
-        Volver a productos
-      </Button>
+      <StructuredData type="product" product={product} />
+      <nav aria-label="Navegación de productos">
+        <Button
+          variant="ghost"
+          className="mb-4 flex items-center gap-1 sm:mb-6"
+          onClick={() => router.push("/productos")}
+        >
+          <ChevronLeft className="h-4 w-4" />
+          Volver a productos
+        </Button>
+      </nav>
 
       <div className="grid gap-6 md:grid-cols-2 md:gap-8">
         <div className="space-y-4">
-          <div className="relative aspect-square overflow-hidden rounded-lg border">
+          <div className="relative aspect-square overflow-hidden rounded-lg border bg-white">
             <Image
               src={product.images[selectedImage] || "/placeholder.svg"}
-              alt={product.name}
+              alt={`${product.name} - Imagen principal del producto`}
               fill
-              className="object-cover"
+              className="object-contain"
             />
             {product.discount > 0 && (
               <div className="absolute left-4 top-4 rounded-full bg-primary px-2 py-1 text-sm font-medium text-white">
@@ -81,7 +129,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 {product.images.map((image, index) => (
                   <button
                     key={index}
-                    className={`relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border transition-all sm:h-20 sm:w-20 ${
+                    className={`relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border bg-white transition-all sm:h-20 sm:w-20 ${
                       selectedImage === index ? "ring-2 ring-primary" : "hover:ring-1 hover:ring-gray-300"
                     }`}
                     onClick={() => setSelectedImage(index)}
@@ -90,7 +138,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                       src={image || "/placeholder.svg"}
                       alt={`${product.name} - Imagen ${index + 1}`}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </button>
                 ))}
@@ -100,53 +148,69 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
         </div>
 
         <div className="space-y-6">
-          <div>
+          <header>
             <h1 className="text-2xl font-bold sm:text-3xl">{product.name}</h1>
             <div className="mt-4 flex flex-wrap items-center gap-2">
-              <span className="text-2xl font-bold sm:text-3xl">${product.price.toFixed(2)}</span>
-              {product.originalPrice && (
+              <span className="text-2xl font-bold sm:text-3xl">${formatPrice(getDisplayPrice())}</span>
+              {product.originalPrice && !isPartialRoll && (
                 <span className="text-base text-muted-foreground line-through sm:text-lg">
-                  ${product.originalPrice.toFixed(2)}
+                  ${formatPrice(product.originalPrice)}
                 </span>
               )}
-              {product.discount > 0 && (
+              {product.discount > 0 && !isPartialRoll && (
                 <span className="w-fit rounded-full bg-primary/10 px-2 py-1 text-sm font-medium text-primary">
                   {product.discount}% descuento
                 </span>
               )}
             </div>
-          </div>
+          </header>
 
           <Separator />
 
           <div className="space-y-4">
-            <div className="flex flex-wrap items-center gap-4">
-              <span className="font-medium">Cantidad:</span>
-              <div className="flex items-center">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 rounded-r-none"
-                  onClick={() => handleQuantityChange(quantity - 1)}
-                  disabled={quantity <= 1}
-                >
-                  <Minus className="h-3 w-3" />
-                  <span className="sr-only">Disminuir cantidad</span>
-                </Button>
-                <div className="flex h-8 w-12 items-center justify-center border-y">{quantity}</div>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 rounded-l-none"
-                  onClick={() => handleQuantityChange(quantity + 1)}
-                  disabled={quantity >= product.stock}
-                >
-                  <Plus className="h-3 w-3" />
-                  <span className="sr-only">Aumentar cantidad</span>
-                </Button>
+            {product.isRollProduct ? (
+              <RollSelector
+                product={{
+                  id: product.id,
+                  name: product.name,
+                  price: product.price,
+                  rollLength: product.rollLength || 100,
+                  rollPrice: product.rollPrice,
+                  wholesalePrice: product.wholesalePrice,
+                  stock: product.stock,
+                }}
+                onQuantityChange={handleRollQuantityChange}
+                initialQuantity={quantity}
+              />
+            ) : (
+              <div className="flex flex-wrap items-center gap-4">
+                <span className="font-medium">Cantidad:</span>
+                <div className="flex items-center">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 rounded-r-none"
+                    onClick={() => handleQuantityChange(quantity - 1)}
+                    disabled={quantity <= 1}
+                  >
+                    <Minus className="h-3 w-3" />
+                    <span className="sr-only">Disminuir cantidad</span>
+                  </Button>
+                  <div className="flex h-8 w-12 items-center justify-center border-y">{quantity}</div>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 rounded-l-none"
+                    onClick={() => handleQuantityChange(quantity + 1)}
+                    disabled={quantity >= product.stock}
+                  >
+                    <Plus className="h-3 w-3" />
+                    <span className="sr-only">Aumentar cantidad</span>
+                  </Button>
+                </div>
+                <span className="text-sm text-muted-foreground">{product.stock} disponibles</span>
               </div>
-              <span className="text-sm text-muted-foreground">{product.stock} disponibles</span>
-            </div>
+            )}
 
             <Button className="w-full sm:w-auto" size="lg" onClick={handleAddToCart} disabled={product.stock === 0}>
               <ShoppingCart className="mr-2 h-5 w-5" />

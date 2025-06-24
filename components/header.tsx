@@ -14,7 +14,7 @@ import { CartSheet } from "@/components/cart-sheet"
 export function Header() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { cartItems } = useCart()
+  const { cartItems, setIsCartOpen } = useCart()
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -43,7 +43,7 @@ export function Header() {
           <Link href="/" className="flex items-center space-x-2">
             <Image
               src="/logo1.png"
-              alt="Ferremarket Logo"
+              alt="Logo de Ferremarket - Tu ferretería de confianza"
               width={40}
               height={40}
             />
@@ -73,17 +73,20 @@ export function Header() {
               </Button>
             )}
             <CartSheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="relative">
-                  <ShoppingCart className="h-5 w-5" />
-                  {totalItems > 0 && (
-                    <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-white">
-                      {totalItems}
-                    </span>
-                  )}
-                  <span className="sr-only">Carrito</span>
-                </Button>
-              </SheetTrigger>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="relative"
+                onClick={() => setIsCartOpen(true)}
+              >
+                <ShoppingCart className="h-5 w-5" />
+                {totalItems > 0 && (
+                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-white">
+                    {totalItems}
+                  </span>
+                )}
+                <span className="sr-only">Carrito</span>
+              </Button>
             </CartSheet>
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
@@ -96,7 +99,7 @@ export function Header() {
                 <Link href="/" className="flex items-center space-x-2">
                   <Image
                     src="/logo1.png"
-                    alt="Ferremarket Logo"
+                    alt="Logo de Ferremarket - Tu ferretería de confianza"
                     width={40}
                     height={40}
                   />

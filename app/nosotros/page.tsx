@@ -1,7 +1,19 @@
 import Image from "next/image"
+import type { Metadata } from "next"
 import { Award, Clock, Shield, Truck } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ClientLogos } from "@/components/client-logos"
+
+export const metadata: Metadata = {
+  title: "Nosotros - Nuestra Historia",
+  description: "Conoce la historia de Ferremarket: 15 años brindando soluciones en ferretería. Fundada por Susana Mansilla y Alberto Duca, hoy somos proveedores del estado y referentes en AMBA.",
+  keywords: ["historia ferremarket", "ferretería familiar", "15 años experiencia", "proveedores estado", "AMBA"],
+  openGraph: {
+    title: "Nosotros - Ferremarket | 15 años de historia familiar",
+    description: "Conoce nuestra historia: de ferretería local a PyME distribuidora en AMBA. 15 años de crecimiento y dedicación.",
+    images: ['/hero6.jpg'],
+  },
+}
 
 export default function AboutPage() {
   return (
@@ -11,7 +23,7 @@ export default function AboutPage() {
           <div className="relative h-[250px] overflow-hidden rounded-lg sm:h-[300px] md:h-auto">
             <Image
               src="/hero6.jpg"
-              alt="Ferremarket tienda"
+              alt="Fachada exterior de Ferremarket, ferretería familiar con 15 años de experiencia"
               fill
               className="object-cover"
             />

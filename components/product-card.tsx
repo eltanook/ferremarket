@@ -36,12 +36,12 @@ export function ProductCard({ product }: ProductCardProps) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="aspect-square relative overflow-hidden">
+        <div className="aspect-square relative overflow-hidden bg-white border-b border-gray-100">
           <Image
             src={product.images[0] || "/placeholder.svg"}
             alt={product.name}
             fill
-            className="object-cover transition-transform duration-300 hover:scale-105"
+            className="object-contain transition-transform duration-300 hover:scale-105"
           />
           {isHovered && (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/40 p-4 opacity-0 transition-opacity duration-300 hover:opacity-100">

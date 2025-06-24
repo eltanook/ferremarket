@@ -9,9 +9,10 @@ import { Minus, Plus, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { useCart } from "@/components/cart-provider"
+import { formatPrice } from "@/lib/utils"
 
 export function CartSheet({ children }: { children: React.ReactNode }) {
-  const { cartItems, removeFromCart, updateQuantity, totalPrice, clearCart } = useCart()
+  const { cartItems, removeFromCart, updateQuantity, totalPrice, clearCart, isCartOpen, setIsCartOpen } = useCart()
   const [isCheckingOut, setIsCheckingOut] = useState(false)
 
   const handleCheckout = () => {
@@ -22,8 +23,11 @@ export function CartSheet({ children }: { children: React.ReactNode }) {
     // Create WhatsApp message with cart details
     const message = encodeURIComponent(
       `Hola, me gustaría hacer un pedido:\n\n${cartItems
-        .map((item) => `- ${item.quantity}x ${item.name}: $${(item.price * item.quantity).toFixed(2)}`)
-        .join("\n")}\n\nTotal: $${totalPrice.toFixed(2)}`,
+        .map((item) => {
+          const itemTotal = item.price * item.quantity
+          return `- ${item.quantity}x ${item.name}: $${formatPrice(itemTotal)}`
+        })
+        .join("\n")}\n\nTotal: $${formatPrice(totalPrice)}`,
     )
 
     // Open WhatsApp link in new tab
@@ -36,7 +40,7 @@ export function CartSheet({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <Sheet>
+    <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
       {children}
       <SheetContent className="flex w-full flex-col sm:max-w-lg">
         <SheetHeader>
@@ -57,20 +61,20 @@ export function CartSheet({ children }: { children: React.ReactNode }) {
             <div className="flex flex-1 flex-col gap-5 overflow-auto py-6">
               {cartItems.map((item) => (
                 <div key={item.id} className="flex items-start gap-4">
-                  <div className="h-16 w-16 overflow-hidden rounded-md border">
+                  <div className="h-16 w-16 overflow-hidden rounded-md border bg-white">
                     <Image
                       src={item.image || "/placeholder.svg"}
                       alt={item.name}
                       width={64}
                       height={64}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-contain"
                     />
                   </div>
                   <div className="flex flex-1 flex-col">
                     <div className="flex justify-between">
                       <div>
                         <h4 className="font-medium">{item.name}</h4>
-                        <p className="text-sm text-muted-foreground">${item.price.toFixed(2)}</p>
+                        <p className="text-sm text-muted-foreground">${formatPrice(item.price)}</p>
                       </div>
                       <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)}>
                         <Trash2 className="h-4 w-4" />
@@ -106,7 +110,7 @@ export function CartSheet({ children }: { children: React.ReactNode }) {
             <div className="space-y-4 border-t pt-6">
               <div className="flex items-center justify-between">
                 <span className="font-medium">Total</span>
-                <span className="font-medium">${totalPrice.toFixed(2)}</span>
+                <span className="font-medium">${formatPrice(totalPrice)}</span>
               </div>
               <div className="flex flex-col gap-2">
                 <Button onClick={handleCheckout} disabled={isCheckingOut}>
