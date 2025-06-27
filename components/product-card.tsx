@@ -80,7 +80,7 @@ export function ProductCard({ product }: ProductCardProps) {
               <Button 
                 size="sm" 
                 variant="secondary" 
-                className="w-full rounded-full font-medium bg-white/90 hover:bg-white text-foreground hover:scale-105 transition-all duration-300"
+                className="w-full rounded-full font-medium bg-white/90 hover:bg-white text-black hover:scale-105 transition-all duration-300"
               >
                 <Eye className="mr-2 h-4 w-4" />
                 Ver detalles
