@@ -29,8 +29,12 @@ export default function Home() {
 
       <section className="container">
         <div className="mb-8 text-center sm:mb-12">
-          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">Categorías destacadas</h2>
-          <p className="mt-2 text-muted-foreground">Explora nuestras categorías más populares</p>
+          <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
+            Categorías destacadas
+          </h2>
+          <p className="mt-2 font-body text-muted-foreground">
+            Explora nuestras categorías más populares
+          </p>
         </div>
         <FeaturedCategories />
       </section>
@@ -38,11 +42,18 @@ export default function Home() {
       <section className="container">
         <div className="mb-6 flex flex-col gap-2 sm:mb-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">Para enfrentar el frío del invierno</h2>
-            <p className="mt-1 text-muted-foreground sm:mt-2">Productos esenciales para mantener tu hogar cálido y confortable</p>
+            <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
+              Para enfrentar el frío del invierno
+            </h2>
+            <p className="mt-1 font-body text-muted-foreground sm:mt-2">
+              Productos esenciales para mantener tu hogar cálido y confortable
+            </p>
           </div>
           <Link href="/productos?categoria=invierno" className="self-start sm:self-center">
-            <Button variant="outline" className="gap-1">
+            <Button 
+              variant="outline" 
+              className="gap-1 border-primary/50 text-primary hover:bg-primary hover:text-white transition-all duration-300"
+            >
               Ver todos
               <ChevronRight className="h-4 w-4" />
             </Button>
@@ -51,28 +62,30 @@ export default function Home() {
         <FeaturedProducts />
       </section>
 
-      <section className="bg-card py-12 sm:py-16">
+      <section className="bg-gradient-to-br from-accent/5 to-primary/5 py-12 sm:py-16">
         <div className="container">
           <div className="grid gap-8 md:grid-cols-2 md:gap-12">
             <div className="flex flex-col justify-center space-y-4">
-              <div className="w-fit rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
+              <div className="w-fit rounded-lg bg-primary px-3 py-1 text-sm font-medium text-white shadow-md">
                 Más de 15 años de experiencia
               </div>
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
+              <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
                 Una historia familiar de crecimiento y dedicación
               </h2>
-              <p className="text-muted-foreground">
+              <p className="font-body text-muted-foreground leading-relaxed">
                 Desde 2008, Ferremarket ha evolucionado de una pequeña ferretería local a una PyME distribuidora 
                 que llega a todo el AMBA. Fundada por Susana Mansilla y Alberto Duca, hoy continuamos su legado 
                 ofreciendo rapidez y soluciones a empresas y particulares.
               </p>
               <div className="pt-4">
                 <Link href="/nosotros">
-                  <Button>Conoce más sobre nosotros</Button>
+                  <Button className="bg-primary hover:bg-primary/90 font-medium text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    Conocé más sobre nosotros
+                  </Button>
                 </Link>
               </div>
             </div>
-            <div className="relative h-[250px] overflow-hidden rounded-lg sm:h-[300px] md:h-auto">
+            <div className="relative h-[250px] overflow-hidden rounded-lg shadow-lg sm:h-[300px] md:h-auto">
               <Image
                 src="/hero5.jpg"
                 alt="Interior de la tienda Ferremarket mostrando herramientas y materiales de construcción"

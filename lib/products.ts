@@ -56,12 +56,12 @@ export const products: Product[] = [
   },
   {
     id: "amoladora-angular-900w",
-    name: "Amoladora Angular 900W 4.5 pulgadas",
+    name: "Amoladora Angular Hamilton 900W 4.5 pulgadas",
     description:
-      "Amoladora angular profesional de 900W con disco de 4.5 pulgadas. Empuñadura antivibración y protector de disco ajustable.",
-    price: 189.9,
-    originalPrice: 219.9,
-    discount: 14,
+      "Amoladora angular Hamilton profesional de 900W con disco de 4.5 pulgadas. Empuñadura antivibración y protector de disco ajustable.",
+    price: 60000,
+    originalPrice: null,
+    discount: 0,
     images: [
       "/products/herramientas_electricas/4.png",
       "/products/herramientas_electricas/5.png",
@@ -78,232 +78,138 @@ export const products: Product[] = [
     },
   },
   {
-    id: "media-sombra-220-80-verde-negro",
-    name: "Media Sombra 2,20m - 80% Verde/Negro",
+    id: "media-sombra-antigranizo",
+    name: "Media Sombra Antigranizo",
     description:
-      "Media sombra antigranizo 80% con protector de rayos UV en colores verde y negro. Medida 2,20 metros. Precio por metro.",
-    price: 2000,
+      "Media sombra antigranizo con protector de rayos UV. Disponible en diferentes porcentajes, medidas y colores. Precio por metro.",
+    price: 1700, // Precio base de la variante más económica
     originalPrice: null,
     discount: 0,
     images: [
       "/products/medias_sombras_lonas/1.PNG",
       "/products/medias_sombras_lonas/2.PNG",
+      "/products/medias_sombras_lonas/3.PNG",
+      "/products/medias_sombras_lonas/4.PNG",
+      "/products/medias_sombras_lonas/5.PNG",
     ],
     category: ["medias-sombras-lonas", "verano"],
     stock: 50,
     featured: true,
     isRollProduct: true,
-    rollLength: 220, // 2.20 metros = 220 cm
-    rollPrice: 85000, // Precio por rollo de 50 metros
+    hasVariants: true,
+    rollLength: 5000, // 50 metros en cm
+    rollPrice: 85000, // Precio base por rollo
     specifications: {
-      "Medida": "2,20 metros",
-      "Porcentaje": "80%",
-      "Colores": "Verde y Negro",
       "Protección": "Antigranizo",
       "UV": "Protector de Rayos UV",
       "Venta": "Por metro",
-      "Rollo completo": "50 metros - $85.000",
     },
-  },
-  {
-    id: "media-sombra-220-80-beige-gris",
-    name: "Media Sombra 2,20m - 80% Beige/Gris",
-    description:
-      "Media sombra antigranizo 80% con protector de rayos UV en colores beige y gris. Medida 2,20 metros. Precio por metro.",
-    price: 2800,
-    originalPrice: null,
-    discount: 0,
-    images: [
-      "/products/medias_sombras_lonas/3.PNG",
-      "/products/medias_sombras_lonas/4.PNG",
-      "/products/medias_sombras_lonas/5.PNG",
+    variants: [
+      {
+        id: "media-sombra-220-80-verde-negro",
+        name: "2,20m - 80% Verde/Negro",
+        price: 1700, // Precio por metro consistente
+        stock: 50,
+        rollPrice: 85000, // 50m × $1700 = $85.000
+        specifications: {
+          "Medida": "2,20 metros",
+          "Porcentaje": "80%",
+          "Colores": "Verde y Negro",
+          "Rollo completo": "50 metros - $85.000",
+        },
+      },
+      {
+        id: "media-sombra-220-80-beige-gris",
+        name: "2,20m - 80% Beige/Gris",
+        price: 1960, // Precio por metro consistente
+        stock: 45,
+        rollPrice: 98000, // 50m × $1960 = $98.000
+        specifications: {
+          "Medida": "2,20 metros",
+          "Porcentaje": "80%",
+          "Colores": "Beige y Gris",
+          "Rollo completo": "50 metros - $98.000",
+        },
+      },
+      {
+        id: "media-sombra-420-80-verde-negro",
+        name: "4,20m - 80% Verde/Negro",
+        price: 1700, // MISMO precio por metro que 2,20m
+        stock: 40,
+        rollPrice: 85000, // Mismo precio por rollo
+        specifications: {
+          "Medida": "4,20 metros",
+          "Porcentaje": "80%",
+          "Colores": "Verde y Negro",
+          "Rollo completo": "50 metros - $85.000",
+        },
+      },
+      {
+        id: "media-sombra-420-80-beige-gris",
+        name: "4,20m - 80% Beige/Gris",
+        price: 1960, // MISMO precio por metro que 2,20m
+        stock: 35,
+        rollPrice: 98000, // Mismo precio por rollo
+        specifications: {
+          "Medida": "4,20 metros",
+          "Porcentaje": "80%",
+          "Colores": "Beige y Gris",
+          "Rollo completo": "50 metros - $98.000",
+        },
+      },
+      {
+        id: "media-sombra-220-90-verde-negro",
+        name: "2,20m - 90% Verde/Negro",
+        price: 3000, // Precio por metro consistente
+        stock: 30,
+        rollPrice: 150000, // 50m × $3000 = $150.000
+        specifications: {
+          "Medida": "2,20 metros",
+          "Porcentaje": "90%",
+          "Colores": "Verde y Negro",
+          "Rollo completo": "50 metros - $150.000",
+        },
+      },
+      {
+        id: "media-sombra-220-90-beige-gris",
+        name: "2,20m - 90% Beige/Gris",
+        price: 3400, // Precio por metro consistente
+        stock: 25,
+        rollPrice: 170000, // 50m × $3400 = $170.000
+        specifications: {
+          "Medida": "2,20 metros",
+          "Porcentaje": "90%",
+          "Colores": "Beige y Gris",
+          "Rollo completo": "50 metros - $170.000",
+        },
+      },
+      {
+        id: "media-sombra-420-90-verde-negro",
+        name: "4,20m - 90% Verde/Negro",
+        price: 3000, // MISMO precio por metro que 2,20m
+        stock: 20,
+        rollPrice: 150000, // Mismo precio por rollo
+        specifications: {
+          "Medida": "4,20 metros",
+          "Porcentaje": "90%",
+          "Colores": "Verde y Negro",
+          "Rollo completo": "50 metros - $150.000",
+        },
+      },
+      {
+        id: "media-sombra-420-90-beige-gris",
+        name: "4,20m - 90% Beige/Gris",
+        price: 3400, // MISMO precio por metro que 2,20m
+        stock: 15,
+        rollPrice: 170000, // Mismo precio por rollo
+        specifications: {
+          "Medida": "4,20 metros",
+          "Porcentaje": "90%",
+          "Colores": "Beige y Gris",
+          "Rollo completo": "50 metros - $170.000",
+        },
+      },
     ],
-    category: ["medias-sombras-lonas", "verano"],
-    stock: 45,
-    featured: true,
-    isRollProduct: true,
-    rollLength: 220, // 2.20 metros = 220 cm
-    rollPrice: 98000, // Precio por rollo de 50 metros
-    specifications: {
-      "Medida": "2,20 metros",
-      "Porcentaje": "80%",
-      "Colores": "Beige y Gris",
-      "Protección": "Antigranizo",
-      "UV": "Protector de Rayos UV",
-      "Venta": "Por metro",
-      "Rollo completo": "50 metros - $98.000",
-    },
-  },
-  {
-    id: "media-sombra-420-80-verde-negro",
-    name: "Media Sombra 4,20m - 80% Verde/Negro",
-    description:
-      "Media sombra antigranizo 80% con protector de rayos UV en colores verde y negro. Medida 4,20 metros. Precio por metro.",
-    price: 4000,
-    originalPrice: null,
-    discount: 0,
-    images: [
-      "/products/medias_sombras_lonas/1.PNG",
-      "/products/medias_sombras_lonas/2.PNG",
-    ],
-    category: ["medias-sombras-lonas", "verano"],
-    stock: 40,
-    featured: true,
-    isRollProduct: true,
-    rollLength: 420, // 4.20 metros = 420 cm
-    rollPrice: 160000, // Precio por rollo de 50 metros
-    specifications: {
-      "Medida": "4,20 metros",
-      "Porcentaje": "80%",
-      "Colores": "Verde y Negro",
-      "Protección": "Antigranizo",
-      "UV": "Protector de Rayos UV",
-      "Venta": "Por metro",
-      "Rollo completo": "50 metros - $160.000",
-    },
-  },
-  {
-    id: "media-sombra-420-80-beige-gris",
-    name: "Media Sombra 4,20m - 80% Beige/Gris",
-    description:
-      "Media sombra antigranizo 80% con protector de rayos UV en colores beige y gris. Medida 4,20 metros. Precio por metro.",
-    price: 5000,
-    originalPrice: null,
-    discount: 0,
-    images: [
-      "/products/medias_sombras_lonas/3.PNG",
-      "/products/medias_sombras_lonas/4.PNG",
-      "/products/medias_sombras_lonas/5.PNG",
-    ],
-    category: ["medias-sombras-lonas", "verano"],
-    stock: 35,
-    featured: true,
-    isRollProduct: true,
-    rollLength: 420, // 4.20 metros = 420 cm
-    rollPrice: 175000, // Precio por rollo de 50 metros
-    specifications: {
-      "Medida": "4,20 metros",
-      "Porcentaje": "80%",
-      "Colores": "Beige y Gris",
-      "Protección": "Antigranizo",
-      "UV": "Protector de Rayos UV",
-      "Venta": "Por metro",
-      "Rollo completo": "50 metros - $175.000",
-    },
-  },
-  {
-    id: "media-sombra-220-90-verde-negro",
-    name: "Media Sombra 2,20m - 90% Verde/Negro",
-    description:
-      "Media sombra antigranizo 90% con protector de rayos UV en colores verde y negro. Medida 2,20 metros. Precio por metro.",
-    price: 4000,
-    originalPrice: null,
-    discount: 0,
-    images: [
-      "/products/medias_sombras_lonas/1.PNG",
-      "/products/medias_sombras_lonas/2.PNG",
-    ],
-    category: ["medias-sombras-lonas", "verano"],
-    stock: 42,
-    featured: true,
-    isRollProduct: true,
-    rollLength: 220, // 2.20 metros = 220 cm
-    rollPrice: 145000, // Precio por rollo de 50 metros
-    specifications: {
-      "Medida": "2,20 metros",
-      "Porcentaje": "90%",
-      "Colores": "Verde y Negro",
-      "Protección": "Antigranizo",
-      "UV": "Protector de Rayos UV",
-      "Venta": "Por metro",
-      "Rollo completo": "50 metros - $145.000",
-    },
-  },
-  {
-    id: "media-sombra-220-90-beige-gris",
-    name: "Media Sombra 2,20m - 90% Beige/Gris",
-    description:
-      "Media sombra antigranizo 90% con protector de rayos UV en colores beige y gris. Medida 2,20 metros. Precio por metro.",
-    price: 5000,
-    originalPrice: null,
-    discount: 0,
-    images: [
-      "/products/medias_sombras_lonas/3.PNG",
-      "/products/medias_sombras_lonas/4.PNG",
-      "/products/medias_sombras_lonas/5.PNG",
-    ],
-    category: ["medias-sombras-lonas", "verano"],
-    stock: 38,
-    featured: true,
-    isRollProduct: true,
-    rollLength: 220, // 2.20 metros = 220 cm
-    rollPrice: 170000, // Precio por rollo de 50 metros
-    specifications: {
-      "Medida": "2,20 metros",
-      "Porcentaje": "90%",
-      "Colores": "Beige y Gris",
-      "Protección": "Antigranizo",
-      "UV": "Protector de Rayos UV",
-      "Venta": "Por metro",
-      "Rollo completo": "50 metros - $170.000",
-    },
-  },
-  {
-    id: "media-sombra-420-90-verde-negro",
-    name: "Media Sombra 4,20m - 90% Verde/Negro",
-    description:
-      "Media sombra antigranizo 90% con protector de rayos UV en colores verde y negro. Medida 4,20 metros. Precio por metro.",
-    price: 6500,
-    originalPrice: null,
-    discount: 0,
-    images: [
-      "/products/medias_sombras_lonas/1.PNG",
-      "/products/medias_sombras_lonas/2.PNG",
-    ],
-    category: ["medias-sombras-lonas", "verano"],
-    stock: 30,
-    featured: true,
-    isRollProduct: true,
-    rollLength: 420, // 4.20 metros = 420 cm
-    rollPrice: 300000, // Precio por rollo de 50 metros
-    specifications: {
-      "Medida": "4,20 metros",
-      "Porcentaje": "90%",
-      "Colores": "Verde y Negro",
-      "Protección": "Antigranizo",
-      "UV": "Protector de Rayos UV",
-      "Venta": "Por metro",
-      "Rollo completo": "50 metros - $300.000",
-    },
-  },
-  {
-    id: "media-sombra-420-90-beige-gris",
-    name: "Media Sombra 4,20m - 90% Beige/Gris",
-    description:
-      "Media sombra antigranizo 90% con protector de rayos UV en colores beige y gris. Medida 4,20 metros. Precio por metro.",
-    price: 8000,
-    originalPrice: null,
-    discount: 0,
-    images: [
-      "/products/medias_sombras_lonas/3.PNG",
-      "/products/medias_sombras_lonas/4.PNG",
-      "/products/medias_sombras_lonas/5.PNG",
-    ],
-    category: ["medias-sombras-lonas", "verano"],
-    stock: 25,
-    featured: true,
-    isRollProduct: true,
-    rollLength: 420, // 4.20 metros = 420 cm
-    rollPrice: 320000, // Precio por rollo de 50 metros
-    specifications: {
-      "Medida": "4,20 metros",
-      "Porcentaje": "90%",
-      "Colores": "Beige y Gris",
-      "Protección": "Antigranizo",
-      "UV": "Protector de Rayos UV",
-      "Venta": "Por metro",
-      "Rollo completo": "50 metros - $320.000",
-    },
   },
   {
     id: "malla-soldada-revestida-pvc",
@@ -348,29 +254,7 @@ export const products: Product[] = [
       "Código": "2,1",
     },
   },
-  {
-    id: "tejido-pollero",
-    name: "Tejido Pollero",
-    description:
-      "Tejido hexagonal resistente a la oxidación. Disponible en varias medidas para diferentes aplicaciones.",
-    price: 3800,
-    originalPrice: null,
-    discount: 0,
-    images: [
-      "/products/tejidos/3.PNG",
-      "/products/tejidos/4.PNG",
-      "/products/tejidos/5.PNG",
-    ],
-    category: "tejidos-pvc-metal",
-    stock: 30,
-    featured: false,
-    specifications: {
-      "Tipo": "Tejido hexagonal",
-      "Medida": "1 x 3/4",
-      "Disponibilidad": "Varias medidas",
-      "Características": "No se oxida",
-    },
-  },
+
   {
     id: "tejido-mosquitero-120",
     name: "Tejido Mosquitero 1,20",
@@ -418,32 +302,7 @@ export const products: Product[] = [
       "Mantenimiento": "Fácil de limpiar",
     },
   },
-  {
-    id: "lona-anillada-190",
-    name: "Lona Anillada 1,90",
-    description:
-      "Lona anillada reforzada e impermeable de 1,90 metros con anillos en ambos extremos. Precio por metro.",
-    price: 4500,
-    originalPrice: null,
-    discount: 0,
-    images: [
-      "/products/tejidos/11.PNG",
-      "/products/tejidos/12.PNG",
-      "/products/tejidos/13.PNG",
-      "/products/tejidos/14.PNG",
-    ],
-    category: ["tejidos-pvc-metal", "medias-sombras-lonas", "verano"],
-    stock: 22,
-    featured: true,
-    isRollProduct: true,
-    rollLength: 190, // 1.90 metros = 190 cm
-    specifications: {
-      "Tipo": "Lona anillada",
-      "Medida": "1,90",
-      "Características": "Anillo en ambos extremos, reforzadas, impermeable",
-      "Venta": "Precio por metro",
-    },
-  },
+
   {
     id: "naylon-3m-200-micrones",
     name: "Naylon 3 metros x 200 micrones",
@@ -470,11 +329,11 @@ export const products: Product[] = [
     },
   },
   {
-    id: "cubre-cerco-150",
-    name: "Cubre Cerco 1,50m Liviano 22mm",
+    id: "cubre-cerco-liviano",
+    name: "Cubre Cerco Liviano 22mm",
     description:
-      "Cubre cerco liviano 22mm de 1,50 metros. Resistente a rayos ultravioleta y al viento. Disponible en verde oscuro y verde claro. Apto para obras y jardines con 5 años de durabilidad. Precio por metro.",
-    price: 1600,
+      "Cubre cerco liviano 22mm resistente a rayos ultravioleta y al viento. Disponible en verde oscuro y verde claro. Apto para obras y jardines con 5 años de durabilidad. Precio por metro.",
+    price: 1600, // Precio base de la variante más económica
     originalPrice: null,
     discount: 0,
     images: [
@@ -485,12 +344,12 @@ export const products: Product[] = [
     stock: 50,
     featured: true,
     isRollProduct: true,
-    rollLength: 150, // 1.50 metros = 150 cm
-    rollPrice: 130000, // Precio por rollo completo
-    wholesalePrice: 115000, // Precio por mayor (5 unidades)
+    hasVariants: true,
+    rollLength: 150, // Medida base
+    rollPrice: 130000, // Precio base por rollo
+    wholesalePrice: 115000, // Precio base por mayor
     specifications: {
       "Tipo": "Cubre Cerco Liviano",
-      "Medida": "1,50 metros",
       "Grosor": "22mm",
       "Resistencia UV": "Sí",
       "Resistencia al viento": "Sí", 
@@ -498,42 +357,33 @@ export const products: Product[] = [
       "Uso": "Obras y jardines",
       "Durabilidad": "5 años",
       "Venta": "Por metro",
-      "Rollo completo": "$130.000",
-      "Por mayor": "5 unidades - $115.000 c/u",
     },
-  },
-  {
-    id: "cubre-cerco-180",
-    name: "Cubre Cerco 1,80m Liviano 22mm",
-    description:
-      "Cubre cerco liviano 22mm de 1,80 metros. Resistente a rayos ultravioleta y al viento. Disponible en verde oscuro y verde claro. Apto para obras y jardines con 5 años de durabilidad. Precio por metro.",
-    price: 2000,
-    originalPrice: null,
-    discount: 0,
-    images: [
-      "/products/tejidos/17.PNG",
-      "/products/tejidos/18.PNG",
+    variants: [
+      {
+        id: "cubre-cerco-150",
+        name: "1,50m",
+        price: 1600, // Precio por metro consistente
+        stock: 50,
+        rollPrice: 130000,
+        specifications: {
+          "Medida": "1,50 metros",
+          "Rollo completo": "$130.000",
+          "Por mayor": "5 unidades - $115.000 c/u",
+        },
+      },
+      {
+        id: "cubre-cerco-180",
+        name: "1,80m",
+        price: 1600, // MISMO precio por metro
+        stock: 40,
+        rollPrice: 130000, // Mismo precio por rollo
+        specifications: {
+          "Medida": "1,80 metros",
+          "Rollo completo": "$130.000",
+          "Por mayor": "5 unidades - $115.000 c/u",
+        },
+      },
     ],
-    category: ["tejidos-pvc-metal", "medias-sombras-lonas", "verano"],
-    stock: 40,
-    featured: true,
-    isRollProduct: true,
-    rollLength: 180, // 1.80 metros = 180 cm
-    rollPrice: 150000, // Precio por rollo completo
-    wholesalePrice: 125000, // Precio por mayor (5 unidades)
-    specifications: {
-      "Tipo": "Cubre Cerco Liviano",
-      "Medida": "1,80 metros",
-      "Grosor": "22mm",
-      "Resistencia UV": "Sí",
-      "Resistencia al viento": "Sí",
-      "Colores": "Verde oscuro / Verde claro",
-      "Uso": "Obras y jardines",
-      "Durabilidad": "5 años",
-      "Venta": "Por metro",
-      "Rollo completo": "$150.000",
-      "Por mayor": "5 unidades - $125.000 c/u",
-    },
   },
   {
     id: "resistencia-termotanque",
@@ -659,29 +509,7 @@ export const products: Product[] = [
       "Nota": "Precios pueden modificarse sin previo aviso",
     },
   },
-  {
-    id: "juegos-cables-25",
-    name: "Juegos de cables 2,5",
-    description:
-      "Promoción por 3 juegos de cables medida 2,5. Color a elección, normalizados y aprobados.",
-    price: 80000,
-    originalPrice: null,
-    discount: 0,
-    images: [
-      "/products/electricidad/14.PNG",
-      "/products/electricidad/15.PNG",
-    ],
-    category: "electricidad",
-    stock: 10,
-    featured: true,
-    specifications: {
-      "Promoción": "Promo x 3",
-      "Color": "A elección",
-      "Medida": "2,5",
-      "Estado": "Normalizando",
-      "Aprobación": "Aprobado",
-    },
-  },
+
 
   {
     id: "mochila-pvc-14-litros",
@@ -1098,31 +926,7 @@ export const products: Product[] = [
       "Características": "No se dobla",
     },
   },
-  {
-    id: "carretilla-90l-pvc",
-    name: "Carretilla 90 litros PVC",
-    description:
-      "Carretilla de mano tipo PVC con capacidad de 90 litros y peso máximo de 120kg. Rueda neumática con centro de chapa.",
-    price: 120000,
-    originalPrice: null,
-    discount: 0,
-    images: [
-      "/products/otros/25.PNG",
-      "/products/otros/26.PNG",
-      "/products/otros/27.PNG",
-    ],
-    category: "herramientas-electricas",
-    stock: 6,
-    featured: false,
-    specifications: {
-      "Tipo": "Carretilla de mano",
-      "Capacidad": "90 litros",
-      "Peso máximo": "120 kg",
-      "Material": "PVC",
-      "Rueda": "Neumática",
-      "Centro": "Chapa",
-    },
-  },
+
   // NUEVOS PRODUCTOS AGREGADOS - LOTE 2
   {
     id: "pantalla-gas-envasado-1500k",
@@ -1315,6 +1119,455 @@ export const products: Product[] = [
       "Garantía": "1 año",
     },
   },
+  // NUEVOS PRODUCTOS AGREGADOS
+  {
+    id: "zapatilla-genesis",
+    name: "Zapatilla Génesis",
+    description:
+      "Zapatilla marca Génesis con 4 tomas binorma reforzada. Voltaje 220v. Disponible en diferentes medidas.",
+    price: 8500,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros3/1.jpg",
+      "/products/otros3/2.jpg",
+      "/products/otros3/3.jpg",
+    ],
+    category: "electricidad",
+    stock: 15,
+    featured: false,
+    hasVariants: true,
+    specifications: {
+      "Marca": "Génesis",
+      "Tomas": "4 tomas binorma",
+      "Características": "Reforzada",
+      "Voltaje": "220v",
+    },
+    variants: [
+      {
+        id: "zapatilla-genesis-3m",
+        name: "3 metros",
+        price: 8500,
+        stock: 15,
+        specifications: {
+          "Medida": "3 metros",
+        },
+      },
+      {
+        id: "zapatilla-genesis-5m",
+        name: "5 metros",
+        price: 10000,
+        stock: 12,
+        specifications: {
+          "Medida": "5 metros",
+        },
+      },
+    ],
+  },
+  {
+    id: "reflectores-candela",
+    name: "Reflectores LED Candela",
+    description:
+      "Reflectores LED marca Candela con luz cálida para exterior. Disponibles en diferentes potencias.",
+    price: 5000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros3/5.jpg",
+      "/products/otros3/6.jpg",
+    ],
+    category: "electricidad",
+    stock: 20,
+    featured: true,
+    hasVariants: true,
+    specifications: {
+      "Marca": "Candela",
+      "Tipo": "LED",
+      "Luz": "Cálida",
+      "Uso": "Exterior",
+    },
+    variants: [
+      {
+        id: "reflector-candela-10w",
+        name: "10W",
+        price: 5000,
+        stock: 20,
+        specifications: {
+          "Potencia": "10W",
+        },
+      },
+      {
+        id: "reflector-candela-20w",
+        name: "20W",
+        price: 8000,
+        stock: 15,
+        specifications: {
+          "Potencia": "20W",
+        },
+      },
+      {
+        id: "reflector-candela-30w",
+        name: "30W",
+        price: 12000,
+        stock: 12,
+        specifications: {
+          "Potencia": "30W",
+        },
+      },
+      {
+        id: "reflector-candela-50w",
+        name: "50W",
+        price: 15000,
+        stock: 10,
+        specifications: {
+          "Potencia": "50W",
+        },
+      },
+    ],
+  },
+  {
+    id: "taladro-percutor-hamilton",
+    name: "Taladro Percutor Hamilton",
+    description:
+      "Taladro percutor Hamilton con voltaje 220v, maletín de transporte, frecuencia 50Hz y velocidad máxima 1650rpm. Incluye cargador.",
+    price: 160000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros3/7.jpg",
+      "/products/otros3/8.jpg",
+    ],
+    category: "herramientas-electricas",
+    stock: 8,
+    featured: true,
+    specifications: {
+      "Marca": "Hamilton",
+      "Tipo": "Taladro Percutor",
+      "Voltaje": "220v",
+      "Frecuencia": "50Hz",
+      "Velocidad máxima": "1650rpm",
+      "Incluye": "Maletín de transporte y cargador",
+    },
+  },
+  {
+    id: "rotomartillo-hamilton",
+    name: "Rotomartillo Hamilton 1050W",
+    description:
+      "Rotomartillo Hamilton de 1050w que permite percutor con impacto para perforaciones. Ejecuta 5100 golpes por minuto.",
+    price: 130000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros3/9.jpg",
+      "/products/otros3/10.jpg",
+      "/products/otros3/11.jpg",
+    ],
+    category: "herramientas-electricas",
+    stock: 6,
+    featured: true,
+    specifications: {
+      "Marca": "Hamilton",
+      "Potencia": "1050W",
+      "Tipo": "Rotomartillo con percutor",
+      "Función": "Impacto para perforaciones",
+      "Golpes por minuto": "5100",
+    },
+  },
+
+  {
+    id: "pintura-latex-andina",
+    name: "Pintura Látex Andina 20L",
+    description:
+      "Pintura látex Andina de 20 litros para exterior e interior.",
+    price: 55000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros3/12.jpg",
+      "/products/otros3/13.jpg",
+    ],
+    category: "otros",
+    stock: 10,
+    featured: false,
+    specifications: {
+      "Marca": "Andina",
+      "Tipo": "Látex",
+      "Capacidad": "20 litros",
+      "Uso": "Exterior/Interior",
+    },
+  },
+  {
+    id: "sierra-hamilton-1500w",
+    name: "Sierra Hamilton 1500w",
+    description:
+      "Sierra circular Hamilton de 1500w con voltaje 220v. Peso 3kg, diámetro de disco 184mm y frecuencia 60/50Hz.",
+    price: 156000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros3/28.jpg",
+    ],
+    category: "herramientas-electricas",
+    stock: 5,
+    featured: true,
+    specifications: {
+      "Marca": "Hamilton",
+      "Tipo": "Sierra circular",
+      "Potencia": "1500w",
+      "Voltaje": "220v",
+      "Peso": "3kg",
+      "Diámetro disco": "184mm",
+      "Frecuencia": "60/50Hz",
+    },
+  },
+  {
+    id: "membrana-liquida-andina",
+    name: "Membrana Líquida Andina 20L",
+    description:
+      "Membrana líquida Andina de 20 litros, disponible en rojo y blanco. Acabado satinado de alta calidad. Cubre 6-8 m². Secado 2-6 horas.",
+    price: 60000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros3/15.jpg",
+    ],
+    category: "otros",
+    stock: 8,
+    featured: true,
+    hasVariants: true,
+    specifications: {
+      "Marca": "Andina",
+      "Capacidad": "20 litros",
+      "Acabado": "Satinado",
+      "Calidad": "Alta calidad",
+      "Cobertura": "6-8 m²",
+      "Secado": "2-6 horas",
+    },
+    variants: [
+      {
+        id: "membrana-andina-rojo",
+        name: "Rojo",
+        price: 60000,
+        stock: 4,
+        specifications: {
+          "Color": "Rojo",
+        },
+      },
+      {
+        id: "membrana-andina-blanco",
+        name: "Blanco",
+        price: 60000,
+        stock: 4,
+        specifications: {
+          "Color": "Blanco",
+        },
+      },
+    ],
+  },
+  {
+    id: "pantalla-3000cal",
+    name: "Pantalla 3000 calorías",
+    description:
+      "Pantalla de 3000 calorías disponible para gas natural y gas envasado.",
+    price: 85000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros3/16.jpg",
+      "/products/otros3/17.jpg",
+      "/products/otros3/18.jpg",
+      "/products/otros3/19.jpg",
+      "/products/otros3/20.jpg",
+    ],
+    category: "invierno",
+    stock: 6,
+    featured: true,
+    hasVariants: true,
+    specifications: {
+      "Potencia": "3000 calorías",
+    },
+    variants: [
+      {
+        id: "pantalla-3000cal-natural",
+        name: "Gas Natural",
+        price: 85000,
+        stock: 6,
+        specifications: {
+          "Combustible": "Gas natural",
+          "Incluye": "Válvula y termostato",
+        },
+      },
+      {
+        id: "pantalla-3000cal-envasado",
+        name: "Gas Envasado",
+        price: 85000,
+        stock: 6,
+        specifications: {
+          "Combustible": "Gas envasado",
+          "Incluye": "Válvula",
+        },
+      },
+    ],
+  },
+
+  {
+    id: "kit-salamandra",
+    name: "Kit para Salamandra",
+    description:
+      "Kit completo para salamandra que incluye caños x 4, codos x 2 y sombrero x 1.",
+    price: 40000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros3/24.jpg",
+      "/products/otros3/22.jpg",
+      "/products/otros3/21.jpg",
+      "/products/otros3/23.jpg",
+    ],
+    category: "invierno",
+    stock: 5,
+    featured: false,
+    specifications: {
+      "Incluye": "Caños x 4, codos x 2, sombrero x 1",
+      "Uso": "Para salamandra",
+    },
+  },
+  {
+    id: "tejido-pollero-actualizado",
+    name: "Tejido Pollero",
+    description:
+      "Tejido pollero hexagonal con medida del octágono 3/4. Disponible en diferentes medidas. Se vende por metro y por rollo.",
+    price: 3500,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/tejidos/3.PNG",
+      "/products/tejidos/4.PNG",
+      "/products/tejidos/5.PNG",
+    ],
+    category: "tejidos-pvc-metal",
+    stock: 30,
+    featured: true,
+    isRollProduct: true,
+    hasVariants: true,
+    rollLength: 100,
+    rollPrice: 70000,
+    specifications: {
+      "Tipo": "Tejido hexagonal",
+      "Octágono": "3/4",
+      "Venta": "Por metro y por rollo",
+    },
+    variants: [
+      {
+        id: "tejido-pollero-1m",
+        name: "1 metro",
+        price: 3500,
+        stock: 30,
+        rollPrice: 70000,
+        specifications: {
+          "Medida": "1 metro",
+          "Octágono": "3/4",
+          "Rollo completo": "$70.000",
+        },
+      },
+      {
+        id: "tejido-pollero-120",
+        name: "1,20 metros",
+        price: 4000,
+        stock: 25,
+        rollPrice: 85000,
+        specifications: {
+          "Medida": "1,20 metros",
+          "Octágono": "3/4",
+          "Rollo completo": "$85.000",
+        },
+      },
+      {
+        id: "tejido-pollero-150",
+        name: "1,50 metros",
+        price: 5000,
+        stock: 20,
+        rollPrice: 110000,
+        specifications: {
+          "Medida": "1,50 metros",
+          "Octágono": "3/4",
+          "Rollo completo": "$110.000",
+        },
+      },
+      {
+        id: "tejido-pollero-180",
+        name: "1,80 metros",
+        price: 6000,
+        stock: 15,
+        rollPrice: 120000,
+        specifications: {
+          "Medida": "1,80 metros",
+          "Octágono": "3/4",
+          "Rollo completo": "$120.000",
+        },
+      },
+    ],
+  },
+  {
+    id: "mallas-electrosoldadas",
+    name: "Mallas Electrosoldadas",
+    description:
+      "Mallas electrosoldadas con altura de 1 metro. Disponibles en diferentes medidas. Se vende por metro y por rollo.",
+    price: 6000, // Precio base de la variante más económica
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros3/26.jpg",
+      "/products/otros3/27.jpg",
+    ],
+    category: "tejidos-pvc-metal",
+    stock: 25,
+    featured: true,
+    isRollProduct: true,
+    hasVariants: true,
+    rollLength: 100,
+    rollPrice: 155000, // Precio base por rollo (más económico)
+    specifications: {
+      "Tipo": "Malla electrosoldada",
+      "Altura": "1 metro",
+      "Venta": "Por metro y por rollo",
+    },
+    variants: [
+      {
+        id: "malla-electrosoldada-25x50",
+        name: "25x50",
+        price: 6000,
+        stock: 25,
+        rollPrice: 155000,
+        specifications: {
+          "Medida": "25x50",
+          "Rollo completo": "$155.000",
+        },
+      },
+      {
+        id: "malla-electrosoldada-25x25",
+        name: "25x25",
+        price: 7500,
+        stock: 25,
+        rollPrice: 160000,
+        specifications: {
+          "Medida": "25x25",
+          "Rollo completo": "$160.000",
+        },
+      },
+      {
+        id: "malla-electrosoldada-19x19",
+        name: "19x19",
+        price: 8500,
+        stock: 25,
+        rollPrice: 170000,
+        specifications: {
+          "Medida": "19x19",
+          "Rollo completo": "$170.000",
+        },
+      },
+    ],
+  },
 ]
 
 export const categories = [
@@ -1360,6 +1613,12 @@ export const categories = [
     description: "Productos para la temporada de verano",
     image: "/placeholder.svg?height=300&width=300&text=Verano",
   },
+  {
+    id: "otros",
+    name: "Otros",
+    description: "Otros productos y materiales diversos",
+    image: "/placeholder.svg?height=300&width=300&text=Otros",
+  },
 ]
 
 export function getProductById(id: string): Product | undefined {
@@ -1390,4 +1649,10 @@ export function getRandomProducts(excludeId?: string, count = 4): Product[] {
   const availableProducts = excludeId ? products.filter((p) => p.id !== excludeId) : products
   const shuffled = [...availableProducts].sort(() => 0.5 - Math.random())
   return shuffled.slice(0, count)
+}
+
+export function getVariantById(productId: string, variantId: string): ProductVariant | undefined {
+  const product = getProductById(productId)
+  if (!product?.variants) return undefined
+  return product.variants.find((variant) => variant.id === variantId)
 }

@@ -26,12 +26,17 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#d88113",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#008493",
+          foreground: "#FFFFFF",
+          light: "#00C0D5",
         },
         secondary: {
-          DEFAULT: "#0c76bf",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "#2B2B2B",
+          foreground: "#FFFFFF",
+        },
+        accent: {
+          DEFAULT: "#00C0D5",
+          foreground: "#FFFFFF",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -41,10 +46,6 @@ const config = {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -53,6 +54,21 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        brand: {
+          cyan: {
+            dark: "#008493",
+            light: "#00C0D5",
+          },
+          gray: {
+            dark: "#2B2B2B",
+          },
+          black: "#000000",
+          white: "#FFFFFF",
+        },
+      },
+      fontFamily: {
+        'heading': ['Montserrat', 'Poppins', 'sans-serif'],
+        'body': ['Roboto', 'Open Sans', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -1,3 +1,13 @@
+export interface ProductVariant {
+  id: string
+  name: string
+  price: number
+  originalPrice?: number
+  stock: number
+  specifications?: Record<string, string>
+  rollPrice?: number // Para productos de rollo
+}
+
 export interface Product {
   id: string
   name: string
@@ -14,6 +24,8 @@ export interface Product {
   rollLength?: number // Largo del rollo en centímetros
   rollPrice?: number // Precio por rollo completo
   wholesalePrice?: number // Precio por mayor
+  variants?: ProductVariant[] // Variantes del producto
+  hasVariants?: boolean // Indica si el producto tiene variantes
 }
 
 export interface Category {

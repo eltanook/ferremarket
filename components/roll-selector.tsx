@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Minus, Plus } from "lucide-react"
 
 interface RollSelectorProps {
@@ -18,13 +18,28 @@ interface RollSelectorProps {
     stock: number
   }
   onQuantityChange: (quantity: number, isPartial: boolean, partialLength?: number) => void
+  onSelectionTypeChange?: (isPartial: boolean) => void
   initialQuantity?: number
+  showVariantSelector?: boolean
+  variantSelector?: React.ReactNode
+  selectedVariantPrice?: number // Precio por metro de la variante seleccionada
 }
 
-export function RollSelector({ product, onQuantityChange, initialQuantity = 1 }: RollSelectorProps) {
+export function RollSelector({ 
+  product, 
+  onQuantityChange, 
+  onSelectionTypeChange,
+  initialQuantity = 1,
+  showVariantSelector = false,
+  variantSelector,
+  selectedVariantPrice
+}: RollSelectorProps) {
   const [selectionType, setSelectionType] = useState<"full" | "partial">("full")
   const [fullRolls, setFullRolls] = useState(initialQuantity)
-  const [partialLength, setPartialLength] = useState(10)
+  const [partialLength, setPartialLength] = useState(1) // Empezar en 1 metro
+  
+  // Opciones predefinidas de metros
+  const meterOptions = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 35, 40, 45]
 
   const handleFullRollsChange = (value: number) => {
     if (value >= 1 && value <= product.stock) {
@@ -34,23 +49,39 @@ export function RollSelector({ product, onQuantityChange, initialQuantity = 1 }:
   }
 
   const handlePartialLengthChange = (value: number) => {
-    const clampedValue = Math.min(Math.max(value, 10), product.rollLength)
-    setPartialLength(clampedValue)
-    onQuantityChange(1, true, clampedValue)
+    setPartialLength(value)
+    onQuantityChange(1, true, value * 100) // Convertir metros a cm para compatibilidad
   }
 
   const handleSelectionTypeChange = (type: "full" | "partial") => {
     setSelectionType(type)
+    const isPartial = type === "partial"
+    
+    if (onSelectionTypeChange) {
+      onSelectionTypeChange(isPartial)
+    }
+    
     if (type === "full") {
       onQuantityChange(fullRolls, false)
     } else {
-      onQuantityChange(1, true, partialLength)
+      // Si hay selector de variantes, usar 1 metro por defecto
+      const metersToUse = showVariantSelector ? 1 : partialLength
+      onQuantityChange(1, true, metersToUse * 100) // Convertir metros a cm
     }
   }
 
+  const getPricePerMeter = () => {
+    // El precio por metro es constante para cada variante
+    return selectedVariantPrice || product.price
+  }
+
   const calculatePartialPrice = () => {
-    const percentage = partialLength / product.rollLength
-    return product.price * percentage
+    const pricePerMeter = getPricePerMeter()
+    // Si hay selector de variantes, calcular por 1 metro (la medida viene de la variante)
+    if (showVariantSelector) {
+      return pricePerMeter * 1
+    }
+    return pricePerMeter * partialLength
   }
 
   const getRollPrice = () => {
@@ -91,7 +122,9 @@ export function RollSelector({ product, onQuantityChange, initialQuantity = 1 }:
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="partial" id="partial" />
-            <Label htmlFor="partial">Por metro (${product.price.toLocaleString()}/m)</Label>
+            <Label htmlFor="partial">
+              Por metro (${getPricePerMeter().toLocaleString()}/m)
+            </Label>
           </div>
         </RadioGroup>
       </div>
@@ -125,38 +158,38 @@ export function RollSelector({ product, onQuantityChange, initialQuantity = 1 }:
           <p className="text-sm text-muted-foreground">
             Precio total: ${getTotalPrice().toLocaleString()}
           </p>
-          {fullRolls >= 5 && product.wholesalePrice && (
-            <p className="text-xs text-green-600 font-medium">
-              ¡Precio por mayor aplicado! Ahorrás ${((product.rollPrice || product.price) - product.wholesalePrice) * fullRolls}
-            </p>
-          )}
-          {product.rollPrice && fullRolls < 5 && (
-            <p className="text-xs text-green-600">
-              ¡Ahorrás ${((product.price * 50 - product.rollPrice) * fullRolls).toLocaleString()} comprando rollos completos!
-            </p>
-          )}
         </div>
       ) : (
-        <div className="space-y-2">
-          <Label className="text-base font-medium">
-            Longitud en metros (máximo {(product.rollLength / 100).toFixed(1)}m)
-          </Label>
-          <div className="flex items-center gap-2">
-            <Input
-              type="number"
-              min="1"
-              max={product.rollLength / 100}
-              step="0.1"
-              value={partialLength / 100}
-              onChange={(e) => handlePartialLengthChange(Number(e.target.value) * 100)}
-              className="w-24"
-            />
-            <span className="text-sm text-muted-foreground">metros</span>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Precio: ${calculatePartialPrice().toLocaleString()} 
-            ({(partialLength / 100).toFixed(1)} metros)
-          </p>
+        <div className="space-y-4">
+          {showVariantSelector && variantSelector ? (
+            <>
+              {variantSelector}
+            </>
+          ) : (
+            <div className="space-y-2">
+              <Label className="text-base font-medium">
+                Cantidad en metros
+              </Label>
+              <Select value={partialLength.toString()} onValueChange={(value) => handlePartialLengthChange(Number(value))}>
+                <SelectTrigger className="w-32">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {meterOptions
+                    .filter(option => option <= (product.rollLength / 100))
+                    .map((meters) => (
+                      <SelectItem key={meters} value={meters.toString()}>
+                        {meters} metros
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              <p className="text-sm text-muted-foreground">
+                Precio total: ${calculatePartialPrice().toLocaleString()} 
+                ({partialLength} metros × ${getPricePerMeter().toLocaleString()}/m)
+              </p>
+            </div>
+          )}
         </div>
       )}
     </div>

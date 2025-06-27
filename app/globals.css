@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600&family=Roboto:wght@300;400;500&family=Open+Sans:wght@300;400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,47 +7,47 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 0 0% 0%; /* Negro para tipografía principal */
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 30 83% 46%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 210 80% 40%;
-    --secondary-foreground: 0 0% 98%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 188 100% 29%; /* #008493 - Cian oscuro */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 17%; /* #2B2B2B - Gris oscuro */
+    --secondary-foreground: 0 0% 100%;
+    --accent: 188 100% 42%; /* #00C0D5 - Cian claro */
+    --accent-foreground: 0 0% 100%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 30 83% 46%;
+    --ring: 188 100% 29%; /* #008493 */
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 240 5% 15%;
-    --foreground: 0 0% 95%;
-    --card: 240 5% 15%;
-    --card-foreground: 0 0% 95%;
-    --popover: 240 5% 15%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 30 83% 46%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 210 80% 40%;
-    --secondary-foreground: 0 0% 98%;
+    --background: 0 0% 17%; /* #2B2B2B */
+    --foreground: 0 0% 100%;
+    --card: 0 0% 17%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 17%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 188 100% 29%; /* #008493 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 188 100% 42%; /* #00C0D5 */
+    --accent-foreground: 0 0% 100%;
     --muted: 240 5% 20%;
     --muted-foreground: 240 5% 70%;
-    --accent: 240 5% 20%;
-    --accent-foreground: 0 0% 95%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 5% 25%;
     --input: 240 5% 25%;
-    --ring: 30 83% 46%;
+    --ring: 188 100% 29%;
   }
 }
 
@@ -54,7 +56,19 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground transition-colors duration-300 font-body;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold;
+  }
+  h1 {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+  h2 {
+    @apply text-2xl md:text-3xl font-bold;
+  }
+  h3 {
+    @apply text-xl md:text-2xl font-semibold;
   }
 }
 
@@ -64,11 +78,11 @@
 
 .product-card-hover:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(0, 132, 147, 0.2); /* Sombra con color primario */
 }
 
 .dark .product-card-hover:hover {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 25px -5px rgba(0, 192, 213, 0.3); /* Sombra con color accent en dark mode */
 }
 
 .carousel-container {

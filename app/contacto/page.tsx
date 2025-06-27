@@ -56,7 +56,7 @@ export default function ContactPage() {
                 <MapPin className="mt-1 h-5 w-5 text-primary" />
                 <div>
                   <h3 className="font-medium">Dirección</h3>
-                  <p className="text-sm text-muted-foreground">Av. Principal 123, Ciudad</p>
+                  <p className="text-sm text-muted-foreground">Av Diagonal Norte 1079, Ruta 25 - Moreno (La Reja)</p>
                 </div>
               </div>
 
@@ -64,7 +64,7 @@ export default function ContactPage() {
                 <Phone className="mt-1 h-5 w-5 text-primary" />
                 <div>
                   <h3 className="font-medium">Teléfono</h3>
-                  <p className="text-sm text-muted-foreground">+51 123 456 789</p>
+                  <p className="text-sm text-muted-foreground">+54 9 11 6321-4356</p>
                 </div>
               </div>
 
@@ -125,14 +125,14 @@ export default function ContactPage() {
 
       <div className="mt-8 h-[300px] overflow-hidden rounded-lg border sm:mt-12 sm:h-[400px]">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.964663061!2d-77.03196492394182!3d-12.046656888118893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8b5d35662c7%3A0x15f8bcc3b8f073f8!2sPlaza%20Mayor%20de%20Lima!5e0!3m2!1ses!2spe!4v1686697349121!5m2!1ses!2spe"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.4!2d-58.7!3d-34.65!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDM5JzAwLjAiUyA1OMKwNDInMDAuMCJX!5e0!3m2!1ses!2sar!4v1686697349121!5m2!1ses!2sar"
           width="100%"
           height="100%"
           style={{ border: 0 }}
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Ubicación de Ferremarket"
+          title="Ubicación de Ferremarket - Moreno, La Reja"
         ></iframe>
       </div>
     </div>

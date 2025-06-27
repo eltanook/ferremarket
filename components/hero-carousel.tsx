@@ -67,14 +67,21 @@ export function HeroCarousel() {
               priority={index === 0}
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-black/70" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="max-w-2xl px-6 text-center text-white">
-                <h1 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">{slide.title}</h1>
-                <p className="mt-2 text-sm sm:mt-4 sm:text-base md:text-lg">{slide.description}</p>
+                <h1 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
+                  {slide.title}
+                </h1>
+                <p className="mt-2 font-body text-sm opacity-90 sm:mt-4 sm:text-base md:text-lg">
+                  {slide.description}
+                </p>
                 <div className="mt-4 sm:mt-6">
                   <Link href={slide.link}>
-                    <Button size="sm" className="rounded-full px-4 sm:px-6 md:px-8 md:text-base">
+                    <Button 
+                      size="sm" 
+                      className="bg-primary hover:bg-primary/90 rounded-full px-4 font-medium text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 sm:px-6 md:px-8 md:text-base"
+                    >
                       {slide.cta}
                     </Button>
                   </Link>
@@ -87,7 +94,7 @@ export function HeroCarousel() {
       <Button
         variant="ghost"
         size="icon"
-        className="absolute left-2 top-1/2 z-10 h-8 w-8 -translate-y-1/2 rounded-full bg-black/30 text-white hover:bg-black/50 sm:left-4 sm:h-10 sm:w-10"
+        className="absolute left-2 top-1/2 z-10 h-8 w-8 -translate-y-1/2 rounded-full bg-primary/30 text-white hover:bg-primary/50 backdrop-blur-sm transition-all duration-300 sm:left-4 sm:h-10 sm:w-10"
         onClick={prevSlide}
       >
         <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
@@ -96,7 +103,7 @@ export function HeroCarousel() {
       <Button
         variant="ghost"
         size="icon"
-        className="absolute right-2 top-1/2 z-10 h-8 w-8 -translate-y-1/2 rounded-full bg-black/30 text-white hover:bg-black/50 sm:right-4 sm:h-10 sm:w-10"
+        className="absolute right-2 top-1/2 z-10 h-8 w-8 -translate-y-1/2 rounded-full bg-primary/30 text-white hover:bg-primary/50 backdrop-blur-sm transition-all duration-300 sm:right-4 sm:h-10 sm:w-10"
         onClick={nextSlide}
       >
         <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6" />
@@ -106,8 +113,10 @@ export function HeroCarousel() {
         {slides.map((_, index) => (
           <button
             key={index}
-            className={`h-1.5 w-6 rounded-full transition-colors sm:h-2 sm:w-8 ${
-              index === currentSlide ? "bg-white" : "bg-white/50"
+            className={`h-1.5 w-6 rounded-full transition-all duration-300 sm:h-2 sm:w-8 ${
+              index === currentSlide 
+                ? "bg-primary shadow-lg" 
+                : "bg-white/50 hover:bg-white/70"
             }`}
             onClick={() => setCurrentSlide(index)}
           >

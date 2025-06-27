@@ -11,8 +11,10 @@ import { useCart } from "@/components/cart-provider"
 import { getProductById } from "@/lib/products"
 import { RecommendedProducts } from "@/components/recommended-products"
 import { RollSelector } from "@/components/roll-selector"
+import { ProductVariants } from "@/components/product-variants"
 import { StructuredData } from "@/components/structured-data"
 import { formatPrice } from "@/lib/utils"
+import type { ProductVariant } from "@/lib/types"
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter()
@@ -22,6 +24,10 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   const [selectedImage, setSelectedImage] = useState(0)
   const [isPartialRoll, setIsPartialRoll] = useState(false)
   const [partialLength, setPartialLength] = useState(0)
+  const [showVariantSelector, setShowVariantSelector] = useState(false)
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(
+    product?.hasVariants ? product.variants?.[0] || null : null
+  )
   const { addToCart } = useCart()
 
   if (!product) {
@@ -37,29 +43,39 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   }
 
   const handleAddToCart = () => {
+    // Obtener los datos del producto actual (variante o producto base)
+    const currentProduct = selectedVariant || product
+    const currentPrice = selectedVariant?.price || product.price
+    const currentRollPrice = selectedVariant?.rollPrice || product.rollPrice
+    const currentStock = selectedVariant?.stock || product.stock
+    const productName = selectedVariant ? `${product.name} - ${selectedVariant.name}` : product.name
+
     if (product.isRollProduct && isPartialRoll) {
-      // Agregar fracción de rollo al carrito
-      const partialPrice = (product.price * partialLength) / (product.rollLength || 1)
+      // Calcular precio por metro usando la variante seleccionada
+      const pricePerMeter = currentPrice
+      const lengthInMeters = partialLength / 100
+      const partialPrice = pricePerMeter * lengthInMeters
+      
       addToCart({
-        id: product.id,
-        name: `${product.name} (${(partialLength / 100).toFixed(1)}m)`,
+        id: selectedVariant?.id || product.id,
+        name: `${productName} (${lengthInMeters.toFixed(1)}m)`,
         price: partialPrice,
         image: product.images[0],
       })
     } else {
       // Agregar rollos completos al carrito
-      let rollPrice = product.rollPrice || product.price
-      let namePrefix = product.isRollProduct ? `${product.name} (Rollo 50m)` : product.name
+      let rollPrice = currentRollPrice || currentPrice
+      let namePrefix = product.isRollProduct ? `${productName} (Rollo 50m)` : productName
       
       // Si hay precio por mayor y se compran 5 o más rollos
       if (product.wholesalePrice && quantity >= 5) {
         rollPrice = product.wholesalePrice
-        namePrefix = product.isRollProduct ? `${product.name} (Rollo 50m - Por Mayor)` : `${product.name} (Por Mayor)`
+        namePrefix = product.isRollProduct ? `${productName} (Rollo 50m - Por Mayor)` : `${productName} (Por Mayor)`
       }
       
       for (let i = 0; i < quantity; i++) {
         addToCart({
-          id: product.id,
+          id: selectedVariant?.id || product.id,
           name: namePrefix,
           price: rollPrice,
           image: product.images[0],
@@ -69,7 +85,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   }
 
   const handleQuantityChange = (value: number) => {
-    if (value >= 1 && value <= product.stock) {
+    const currentStock = selectedVariant?.stock || product.stock
+    if (value >= 1 && value <= currentStock) {
       setQuantity(value)
     }
   }
@@ -77,20 +94,62 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   const handleRollQuantityChange = (qty: number, isPartial: boolean, length?: number) => {
     setQuantity(qty)
     setIsPartialRoll(isPartial)
-    if (length) setPartialLength(length)
+    if (length !== undefined) {
+      setPartialLength(length)
+    }
   }
 
   const getDisplayPrice = () => {
-    if (product.isRollProduct && isPartialRoll) {
-      const partialPrice = (product.price * partialLength) / (product.rollLength || 1)
-      return partialPrice
+    const currentPrice = selectedVariant?.price || product.price
+    const currentRollPrice = selectedVariant?.rollPrice || product.rollPrice
+    
+    // Para productos de rollos, mostrar precio del rollo por defecto
+    if (product.isRollProduct) {
+      // Si hay precio por mayor y se compran 5 o más rollos
+      if (product.wholesalePrice && quantity >= 5) {
+        return product.wholesalePrice
+      }
+      
+      // Para productos con variantes, usar el precio del rollo de la variante
+      if (product.hasVariants && selectedVariant) {
+        return selectedVariant.rollPrice || selectedVariant.price
+      }
+      // Para productos sin variantes, usar el precio del rollo
+      return currentRollPrice || currentPrice
     }
-    // Si hay precio por mayor y se compran 5 o más rollos
+    
+    // Para productos con variantes (no rollos), mostrar el precio de la variante seleccionada
+    if (product.hasVariants && selectedVariant) {
+      return selectedVariant.price
+    }
+    
+    // Si hay precio por mayor y se compran 5 o más rollos (productos normales)
     if (product.wholesalePrice && quantity >= 5) {
       return product.wholesalePrice
     }
-    const rollPrice = product.rollPrice || product.price
-    return rollPrice
+    
+    return currentPrice
+  }
+
+  const getDisplayPriceText = () => {
+    const price = getDisplayPrice()
+    const currentPrice = selectedVariant?.price || product.price
+    
+    if (product.isRollProduct && isPartialRoll) {
+      // Mostrar precio por metro cuando está seleccionado "Por metro"
+      return `$${currentPrice.toLocaleString()}/m`
+    }
+    
+    return `$${price.toLocaleString()}`
+  }
+
+  const handleVariantChange = (variant: ProductVariant) => {
+    setSelectedVariant(variant)
+    setQuantity(1) // Reset quantity when changing variant
+  }
+
+  const handleSelectionTypeChange = (isPartial: boolean) => {
+    setShowVariantSelector(isPartial && product.hasVariants)
   }
 
   return (
@@ -151,7 +210,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           <header>
             <h1 className="text-2xl font-bold sm:text-3xl">{product.name}</h1>
             <div className="mt-4 flex flex-wrap items-center gap-2">
-              <span className="text-2xl font-bold sm:text-3xl">${formatPrice(getDisplayPrice())}</span>
+              <span className="text-2xl font-bold sm:text-3xl">{getDisplayPriceText()}</span>
               {product.originalPrice && !isPartialRoll && (
                 <span className="text-base text-muted-foreground line-through sm:text-lg">
                   ${formatPrice(product.originalPrice)}
@@ -169,50 +228,81 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
           <div className="space-y-4">
             {product.isRollProduct ? (
-              <RollSelector
-                product={{
-                  id: product.id,
-                  name: product.name,
-                  price: product.price,
-                  rollLength: product.rollLength || 100,
-                  rollPrice: product.rollPrice,
-                  wholesalePrice: product.wholesalePrice,
-                  stock: product.stock,
-                }}
-                onQuantityChange={handleRollQuantityChange}
-                initialQuantity={quantity}
-              />
+              <>
+                <RollSelector
+                  product={{
+                    id: selectedVariant?.id || product.id,
+                    name: selectedVariant ? `${product.name} - ${selectedVariant.name}` : product.name,
+                    price: selectedVariant?.price || product.price,
+                    rollLength: product.rollLength || 100,
+                    rollPrice: selectedVariant?.rollPrice || product.rollPrice,
+                    wholesalePrice: product.wholesalePrice,
+                    stock: selectedVariant?.stock || product.stock,
+                  }}
+                  onQuantityChange={handleRollQuantityChange}
+                  onSelectionTypeChange={handleSelectionTypeChange}
+                  initialQuantity={quantity}
+                  showVariantSelector={showVariantSelector}
+                  selectedVariantPrice={selectedVariant?.price}
+                  variantSelector={
+                    product.hasVariants && product.variants ? (
+                      <ProductVariants
+                        variants={product.variants}
+                        onVariantChange={handleVariantChange}
+                        selectedVariantId={selectedVariant?.id}
+                      />
+                    ) : undefined
+                  }
+                />
+              </>
             ) : (
-              <div className="flex flex-wrap items-center gap-4">
-                <span className="font-medium">Cantidad:</span>
-                <div className="flex items-center">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="h-8 w-8 rounded-r-none"
-                    onClick={() => handleQuantityChange(quantity - 1)}
-                    disabled={quantity <= 1}
-                  >
-                    <Minus className="h-3 w-3" />
-                    <span className="sr-only">Disminuir cantidad</span>
-                  </Button>
-                  <div className="flex h-8 w-12 items-center justify-center border-y">{quantity}</div>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="h-8 w-8 rounded-l-none"
-                    onClick={() => handleQuantityChange(quantity + 1)}
-                    disabled={quantity >= product.stock}
-                  >
-                    <Plus className="h-3 w-3" />
-                    <span className="sr-only">Aumentar cantidad</span>
-                  </Button>
+              <>
+                <div className="flex flex-wrap items-center gap-4">
+                  <span className="font-medium">Cantidad:</span>
+                  <div className="flex items-center">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-8 w-8 rounded-r-none"
+                      onClick={() => handleQuantityChange(quantity - 1)}
+                      disabled={quantity <= 1}
+                    >
+                      <Minus className="h-3 w-3" />
+                      <span className="sr-only">Disminuir cantidad</span>
+                    </Button>
+                    <div className="flex h-8 w-12 items-center justify-center border-y">{quantity}</div>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-8 w-8 rounded-l-none"
+                      onClick={() => handleQuantityChange(quantity + 1)}
+                      disabled={quantity >= (selectedVariant?.stock || product.stock)}
+                    >
+                      <Plus className="h-3 w-3" />
+                      <span className="sr-only">Aumentar cantidad</span>
+                    </Button>
+                  </div>
+                  <span className="text-sm text-muted-foreground">
+                    {selectedVariant?.stock || product.stock} disponibles
+                  </span>
                 </div>
-                <span className="text-sm text-muted-foreground">{product.stock} disponibles</span>
-              </div>
+
+                {product.hasVariants && product.variants && (
+                  <ProductVariants
+                    variants={product.variants}
+                    onVariantChange={handleVariantChange}
+                    selectedVariantId={selectedVariant?.id}
+                  />
+                )}
+              </>
             )}
 
-            <Button className="w-full sm:w-auto" size="lg" onClick={handleAddToCart} disabled={product.stock === 0}>
+            <Button 
+              className="w-full sm:w-auto" 
+              size="lg" 
+              onClick={handleAddToCart} 
+              disabled={(selectedVariant?.stock || product.stock) === 0}
+            >
               <ShoppingCart className="mr-2 h-5 w-5" />
               Agregar al carrito
             </Button>
