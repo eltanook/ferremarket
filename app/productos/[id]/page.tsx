@@ -229,19 +229,19 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           <div className="space-y-4">
             {product.isRollProduct ? (
               <>
-                <RollSelector
-                  product={{
+              <RollSelector
+                product={{
                     id: selectedVariant?.id || product.id,
                     name: selectedVariant ? `${product.name} - ${selectedVariant.name}` : product.name,
                     price: selectedVariant?.price || product.price,
-                    rollLength: product.rollLength || 100,
+                  rollLength: product.rollLength || 100,
                     rollPrice: selectedVariant?.rollPrice || product.rollPrice,
-                    wholesalePrice: product.wholesalePrice,
+                  wholesalePrice: product.wholesalePrice,
                     stock: selectedVariant?.stock || product.stock,
-                  }}
-                  onQuantityChange={handleRollQuantityChange}
+                }}
+                onQuantityChange={handleRollQuantityChange}
                   onSelectionTypeChange={handleSelectionTypeChange}
-                  initialQuantity={quantity}
+                initialQuantity={quantity}
                   showVariantSelector={showVariantSelector}
                   selectedVariantPrice={selectedVariant?.price}
                   variantSelector={
@@ -257,35 +257,35 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               </>
             ) : (
               <>
-                <div className="flex flex-wrap items-center gap-4">
-                  <span className="font-medium">Cantidad:</span>
-                  <div className="flex items-center">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="h-8 w-8 rounded-r-none"
-                      onClick={() => handleQuantityChange(quantity - 1)}
-                      disabled={quantity <= 1}
-                    >
-                      <Minus className="h-3 w-3" />
-                      <span className="sr-only">Disminuir cantidad</span>
-                    </Button>
-                    <div className="flex h-8 w-12 items-center justify-center border-y">{quantity}</div>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="h-8 w-8 rounded-l-none"
-                      onClick={() => handleQuantityChange(quantity + 1)}
+              <div className="flex flex-wrap items-center gap-4">
+                <span className="font-medium">Cantidad:</span>
+                <div className="flex items-center">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 rounded-r-none"
+                    onClick={() => handleQuantityChange(quantity - 1)}
+                    disabled={quantity <= 1}
+                  >
+                    <Minus className="h-3 w-3" />
+                    <span className="sr-only">Disminuir cantidad</span>
+                  </Button>
+                  <div className="flex h-8 w-12 items-center justify-center border-y">{quantity}</div>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 rounded-l-none"
+                    onClick={() => handleQuantityChange(quantity + 1)}
                       disabled={quantity >= (selectedVariant?.stock || product.stock)}
-                    >
-                      <Plus className="h-3 w-3" />
-                      <span className="sr-only">Aumentar cantidad</span>
-                    </Button>
-                  </div>
+                  >
+                    <Plus className="h-3 w-3" />
+                    <span className="sr-only">Aumentar cantidad</span>
+                  </Button>
+                </div>
                   <span className="text-sm text-muted-foreground">
                     {selectedVariant?.stock || product.stock} disponibles
                   </span>
-                </div>
+              </div>
 
                 {product.hasVariants && product.variants && (
                   <ProductVariants

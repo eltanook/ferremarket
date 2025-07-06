@@ -165,11 +165,11 @@ export function RollSelector({
             <>
               {variantSelector}
             </>
-          ) : (
-            <div className="space-y-2">
-              <Label className="text-base font-medium">
+      ) : (
+        <div className="space-y-2">
+          <Label className="text-base font-medium">
                 Cantidad en metros
-              </Label>
+          </Label>
               <Select value={partialLength.toString()} onValueChange={(value) => handlePartialLengthChange(Number(value))}>
                 <SelectTrigger className="w-32">
                   <SelectValue />
@@ -184,10 +184,10 @@ export function RollSelector({
                     ))}
                   </SelectContent>
                 </Select>
-              <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
                 Precio total: ${calculatePartialPrice().toLocaleString()} 
                 ({partialLength} metros × ${getPricePerMeter().toLocaleString()}/m)
-              </p>
+          </p>
             </div>
           )}
         </div>

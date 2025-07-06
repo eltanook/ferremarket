@@ -115,99 +115,99 @@ export const products: Product[] = [
           "Medida": "2,20 metros",
           "Porcentaje": "80%",
           "Colores": "Verde y Negro",
-          "Rollo completo": "50 metros - $85.000",
-        },
-      },
-      {
-        id: "media-sombra-220-80-beige-gris",
+      "Rollo completo": "50 metros - $85.000",
+    },
+  },
+  {
+    id: "media-sombra-220-80-beige-gris",
         name: "2,20m - 80% Beige/Gris",
         price: 1960, // Precio por metro consistente
-        stock: 45,
+    stock: 45,
         rollPrice: 98000, // 50m × $1960 = $98.000
-        specifications: {
-          "Medida": "2,20 metros",
-          "Porcentaje": "80%",
-          "Colores": "Beige y Gris",
-          "Rollo completo": "50 metros - $98.000",
-        },
-      },
-      {
-        id: "media-sombra-420-80-verde-negro",
+    specifications: {
+      "Medida": "2,20 metros",
+      "Porcentaje": "80%",
+      "Colores": "Beige y Gris",
+      "Rollo completo": "50 metros - $98.000",
+    },
+  },
+  {
+    id: "media-sombra-420-80-verde-negro",
         name: "4,20m - 80% Verde/Negro",
         price: 1700, // MISMO precio por metro que 2,20m
-        stock: 40,
+    stock: 40,
         rollPrice: 85000, // Mismo precio por rollo
-        specifications: {
-          "Medida": "4,20 metros",
-          "Porcentaje": "80%",
-          "Colores": "Verde y Negro",
+    specifications: {
+      "Medida": "4,20 metros",
+      "Porcentaje": "80%",
+      "Colores": "Verde y Negro",
           "Rollo completo": "50 metros - $85.000",
-        },
-      },
-      {
-        id: "media-sombra-420-80-beige-gris",
+    },
+  },
+  {
+    id: "media-sombra-420-80-beige-gris",
         name: "4,20m - 80% Beige/Gris",
         price: 1960, // MISMO precio por metro que 2,20m
-        stock: 35,
+    stock: 35,
         rollPrice: 98000, // Mismo precio por rollo
-        specifications: {
-          "Medida": "4,20 metros",
-          "Porcentaje": "80%",
-          "Colores": "Beige y Gris",
+    specifications: {
+      "Medida": "4,20 metros",
+      "Porcentaje": "80%",
+      "Colores": "Beige y Gris",
           "Rollo completo": "50 metros - $98.000",
-        },
-      },
-      {
-        id: "media-sombra-220-90-verde-negro",
+    },
+  },
+  {
+    id: "media-sombra-220-90-verde-negro",
         name: "2,20m - 90% Verde/Negro",
         price: 3000, // Precio por metro consistente
         stock: 30,
         rollPrice: 150000, // 50m × $3000 = $150.000
-        specifications: {
-          "Medida": "2,20 metros",
-          "Porcentaje": "90%",
-          "Colores": "Verde y Negro",
+    specifications: {
+      "Medida": "2,20 metros",
+      "Porcentaje": "90%",
+      "Colores": "Verde y Negro",
           "Rollo completo": "50 metros - $150.000",
-        },
-      },
-      {
-        id: "media-sombra-220-90-beige-gris",
+    },
+  },
+  {
+    id: "media-sombra-220-90-beige-gris",
         name: "2,20m - 90% Beige/Gris",
         price: 3400, // Precio por metro consistente
         stock: 25,
         rollPrice: 170000, // 50m × $3400 = $170.000
-        specifications: {
-          "Medida": "2,20 metros",
-          "Porcentaje": "90%",
-          "Colores": "Beige y Gris",
-          "Rollo completo": "50 metros - $170.000",
-        },
-      },
-      {
-        id: "media-sombra-420-90-verde-negro",
+    specifications: {
+      "Medida": "2,20 metros",
+      "Porcentaje": "90%",
+      "Colores": "Beige y Gris",
+      "Rollo completo": "50 metros - $170.000",
+    },
+  },
+  {
+    id: "media-sombra-420-90-verde-negro",
         name: "4,20m - 90% Verde/Negro",
         price: 3000, // MISMO precio por metro que 2,20m
         stock: 20,
         rollPrice: 150000, // Mismo precio por rollo
-        specifications: {
-          "Medida": "4,20 metros",
-          "Porcentaje": "90%",
-          "Colores": "Verde y Negro",
+    specifications: {
+      "Medida": "4,20 metros",
+      "Porcentaje": "90%",
+      "Colores": "Verde y Negro",
           "Rollo completo": "50 metros - $150.000",
-        },
-      },
-      {
-        id: "media-sombra-420-90-beige-gris",
+    },
+  },
+  {
+    id: "media-sombra-420-90-beige-gris",
         name: "4,20m - 90% Beige/Gris",
         price: 3400, // MISMO precio por metro que 2,20m
         stock: 15,
         rollPrice: 170000, // Mismo precio por rollo
-        specifications: {
-          "Medida": "4,20 metros",
-          "Porcentaje": "90%",
-          "Colores": "Beige y Gris",
+    specifications: {
+      "Medida": "4,20 metros",
+      "Porcentaje": "90%",
+      "Colores": "Beige y Gris",
           "Rollo completo": "50 metros - $170.000",
-        },
+    },
       },
     ],
   },
@@ -367,21 +367,21 @@ export const products: Product[] = [
         rollPrice: 130000,
         specifications: {
           "Medida": "1,50 metros",
-          "Rollo completo": "$130.000",
-          "Por mayor": "5 unidades - $115.000 c/u",
-        },
-      },
-      {
-        id: "cubre-cerco-180",
+      "Rollo completo": "$130.000",
+      "Por mayor": "5 unidades - $115.000 c/u",
+    },
+  },
+  {
+    id: "cubre-cerco-180",
         name: "1,80m",
         price: 1600, // MISMO precio por metro
-        stock: 40,
+    stock: 40,
         rollPrice: 130000, // Mismo precio por rollo
-        specifications: {
-          "Medida": "1,80 metros",
+    specifications: {
+      "Medida": "1,80 metros",
           "Rollo completo": "$130.000",
           "Por mayor": "5 unidades - $115.000 c/u",
-        },
+    },
       },
     ],
   },

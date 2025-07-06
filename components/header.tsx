@@ -77,7 +77,7 @@ export function Header() {
               className="hover:bg-primary/10 hover:text-primary"
             >
               {mounted && theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
+              </Button>
             <CartSheet>
               <Button 
                 variant="ghost" 

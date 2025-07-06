@@ -23,12 +23,12 @@ export function ProductCard({ product }: ProductCardProps) {
     e.preventDefault()
     // Solo agregar directamente al carrito si no tiene variantes
     if (!product.hasVariants) {
-      addToCart({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.images[0],
-      })
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0],
+    })
     }
   }
 
@@ -91,9 +91,9 @@ export function ProductCard({ product }: ProductCardProps) {
                   className="w-full rounded-full font-medium bg-primary hover:bg-primary/90 text-white hover:shadow-lg hover:scale-105 transition-all duration-300" 
                   onClick={handleAddToCart}
                 >
-                  <ShoppingCart className="mr-2 h-4 w-4" />
-                  Agregar
-                </Button>
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                Agregar
+              </Button>
               )}
             </div>
           )}

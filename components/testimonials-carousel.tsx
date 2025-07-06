@@ -8,31 +8,31 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 const testimonials = [
   {
     id: 1,
-    name: "Carlos Rodríguez",
-    occupation: "Constructor",
+    name: "Roberto Giménez",
+    occupation: "Maestro mayor de obra",
     text: "Excelente calidad en todos los productos. Ferremarket se convirtió en mi proveedor de confianza para todos mis proyectos de construcción. El servicio al cliente es impecable."
   },
   {
     id: 2,
-    name: "María González",
-    occupation: "Arquitecta",
+    name: "Carlos Rodríguez",
+    occupation: "Constructor",
     text: "Como profesional del diseño, necesito materiales de primera calidad. Ferremarket nunca me ha fallado. Su catálogo es amplio y los precios son muy competitivos."
   },
   {
     id: 3,
-    name: "Roberto Silva",
-    occupation: "Electricista",
+    name: "Miguel Fernández",
+    occupation: "Gasista matriculado",
     text: "Llevo más de 10 años comprando aquí. La variedad de productos eléctricos es increíble y siempre tienen lo que necesito en stock. Muy recomendable."
   },
   {
     id: 4,
-    name: "Ana Martínez",
-    occupation: "DIY Enthusiast",
-    text: "Como aficionada al bricolaje, encuentro todo lo que necesito en Ferremarket. El personal es muy atento y me ayudan a elegir los productos correctos."
+    name: "Alejandro Martínez",
+    occupation: "Carpintero",
+    text: "Como aficionado al bricolaje, encuentro todo lo que necesito en Ferremarket. El personal es muy atento y me ayudan a elegir los productos correctos."
   },
   {
     id: 5,
-    name: "Luis Fernández",
+    name: "Diego López",
     occupation: "Plomero",
     text: "Los mejores precios del mercado en materiales de plomería. Calidad garantizada y entrega rápida. Definitivamente mi ferretería de cabecera."
   }
