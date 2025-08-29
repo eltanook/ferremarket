@@ -6,7 +6,7 @@ export const products: Product[] = [
     name: "Hormigonera 3/4 Motor Daff",
     description:
       "Hormigonera reforzada línea pesada con motor 3/4 HP. Capacidad de 130 litros con rodado macizo y voltaje 220v. Marca Daff con 1 año de garantía.",
-    price: 290000,
+    price: 320000,
     originalPrice: null,
     discount: 0,
     images: [
@@ -108,14 +108,14 @@ export const products: Product[] = [
       {
         id: "media-sombra-220-80-verde-negro",
         name: "2,20m - 80% Verde/Negro",
-        price: 1700, // Precio por metro consistente
+        price: 2100, // Precio por metro consistente
         stock: 50,
-        rollPrice: 85000, // 50m × $1700 = $85.000
+        rollPrice: 105000, // 50m × $2100 = $105.000
         specifications: {
           "Medida": "2,20 metros",
           "Porcentaje": "80%",
           "Colores": "Verde y Negro",
-      "Rollo completo": "50 metros - $85.000",
+      "Rollo completo": "50 metros - $105.000",
     },
   },
   {
@@ -134,14 +134,14 @@ export const products: Product[] = [
   {
     id: "media-sombra-420-80-verde-negro",
         name: "4,20m - 80% Verde/Negro",
-        price: 1700, // MISMO precio por metro que 2,20m
+        price: 3680, // Precio por metro para rollo de $184.000
     stock: 40,
-        rollPrice: 85000, // Mismo precio por rollo
+        rollPrice: 184000, // Precio por rollo 4,20m
     specifications: {
       "Medida": "4,20 metros",
       "Porcentaje": "80%",
       "Colores": "Verde y Negro",
-          "Rollo completo": "50 metros - $85.000",
+          "Rollo completo": "50 metros - $184.000",
     },
   },
   {
@@ -216,7 +216,7 @@ export const products: Product[] = [
     name: "Malla Soldada Revestida en PVC",
     description:
       "Malla soldada revestida en epoxi con medidas precisas para aplicaciones de construcción y cerramientos.",
-    price: 9000,
+    price: 5000,
     originalPrice: null,
     discount: 0,
     images: [
@@ -260,7 +260,7 @@ export const products: Product[] = [
     name: "Tejido Mosquitero 1,20",
     description:
       "Tejido mosquitero reforzado de material PVC con medida de 1,20 metros.",
-    price: 3800,
+    price: 4000,
     originalPrice: null,
     discount: 0,
     images: [
@@ -272,11 +272,13 @@ export const products: Product[] = [
     featured: false,
     isRollProduct: true,
     rollLength: 120, // 1.20 metros = 120 cm
+    rollPrice: 83000, // Precio por rollo
     specifications: {
       "Tipo": "Tejido Mosquitero",
       "Medida": "1,20",
       "Material": "PVC",
       "Características": "Reforzado",
+      "Rollo completo": "$83.000",
     },
   },
   {
@@ -304,11 +306,36 @@ export const products: Product[] = [
   },
 
   {
+    id: "naylon-2m-200-micrones",
+    name: "Naylon 2 metros x 200 micrones",
+    description:
+      "Naylon ultra resistente de 200 micrones que no filtra agua. Medida 2 x 50 metros.",
+    price: 55000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/tejidos/15.PNG",
+      "/products/tejidos/16.PNG",
+    ],
+    category: ["tejidos-pvc-metal", "medias-sombras-lonas", "verano"],
+    stock: 12,
+    featured: false,
+    isRollProduct: true,
+    rollLength: 200, // 2 metros = 200 cm
+    specifications: {
+      "Material": "Naylon",
+      "Resistencia": "Ultra Resistente",
+      "Espesor": "200 Micrones",
+      "Impermeabilidad": "No filtra agua",
+      "Medida": "2 x 50 metros",
+    },
+  },
+  {
     id: "naylon-3m-200-micrones",
     name: "Naylon 3 metros x 200 micrones",
     description:
       "Naylon ultra resistente de 200 micrones que no filtra agua. Medida 3 x 50 metros.",
-    price: 48000,
+    price: 63000,
     originalPrice: null,
     discount: 0,
     images: [
@@ -333,7 +360,7 @@ export const products: Product[] = [
     name: "Cubre Cerco Liviano 22mm",
     description:
       "Cubre cerco liviano 22mm resistente a rayos ultravioleta y al viento. Disponible en verde oscuro y verde claro. Apto para obras y jardines con 5 años de durabilidad. Precio por metro.",
-    price: 1600, // Precio base de la variante más económica
+    price: 2000, // Precio base de la variante más económica
     originalPrice: null,
     discount: 0,
     images: [
@@ -346,8 +373,8 @@ export const products: Product[] = [
     isRollProduct: true,
     hasVariants: true,
     rollLength: 150, // Medida base
-    rollPrice: 130000, // Precio base por rollo
-    wholesalePrice: 115000, // Precio base por mayor
+    rollPrice: 170000, // Precio base por rollo
+    wholesalePrice: 155000, // Precio base por mayor
     specifications: {
       "Tipo": "Cubre Cerco Liviano",
       "Grosor": "22mm",
@@ -362,26 +389,26 @@ export const products: Product[] = [
       {
         id: "cubre-cerco-150",
         name: "1,50m",
-        price: 1600, // Precio por metro consistente
+        price: 2000, // Precio por metro consistente
         stock: 50,
-        rollPrice: 130000,
+                rollPrice: 170000,
         specifications: {
           "Medida": "1,50 metros",
-      "Rollo completo": "$130.000",
-      "Por mayor": "5 unidades - $115.000 c/u",
-    },
+      "Rollo completo": "$170.000",
+      "Por mayor": "5 unidades - $155.000 c/u",
+        },
   },
   {
     id: "cubre-cerco-180",
         name: "1,80m",
-        price: 1600, // MISMO precio por metro
+        price: 2000, // MISMO precio por metro
     stock: 40,
-        rollPrice: 130000, // Mismo precio por rollo
-    specifications: {
-      "Medida": "1,80 metros",
-          "Rollo completo": "$130.000",
-          "Por mayor": "5 unidades - $115.000 c/u",
-    },
+                rollPrice: 170000, // Mismo precio por rollo
+        specifications: {
+          "Medida": "1,80 metros",
+          "Rollo completo": "$170.000",
+          "Por mayor": "5 unidades - $155.000 c/u",
+        },
       },
     ],
   },
@@ -390,7 +417,7 @@ export const products: Product[] = [
     name: "Resistencia Termotanque",
     description:
       "Resistencia para termotanque apta para varios modelos. Viene completa con 1 año de garantía.",
-    price: 24000,
+    price: 35000,
     originalPrice: null,
     discount: 0,
     images: [
@@ -539,7 +566,7 @@ export const products: Product[] = [
     name: "Termotanque eléctrico 65 litros",
     description:
       "Señorial Zafiro Eléctrico 65 litros bajo consumo con ahorro de energía y mayor seguridad. Corte de energía por sobrecalentamiento, válvula de seguridad por sobrepresión. Producto certificado por LENOR. Disfruta de agua caliente en todo momento con capacidad de 65 litros, perfecto para hogares de tamaño medio.",
-    price: 235000,
+    price: 290000,
     originalPrice: null,
     discount: 0,
     images: [
@@ -596,7 +623,7 @@ export const products: Product[] = [
     name: "Secarropa a calor",
     description:
       "Tender Axel 3000 con voltaje 220v y capacidad de 4,5 kg. Tambor de acero inoxidable con 3 programas: aire frío, tibio y caliente. Control de temperatura, secado rápido y potencia 950w.",
-    price: 120000,
+    price: 140000,
     originalPrice: null,
     discount: 0,
     images: [
@@ -697,7 +724,7 @@ export const products: Product[] = [
     name: "Membrana 40 kg",
     description:
       "Membrana cubritiva súper resistente de 40 kg. Cobertura de 10 m2.",
-    price: 42000,
+    price: 48000,
     originalPrice: null,
     discount: 0,
     images: [
@@ -982,7 +1009,7 @@ export const products: Product[] = [
     name: "Calefones Metal 25 litros",
     description:
       "Calefones de metal de 25 litros. Súper resistente con accesorios incluidos. Resistencia de bronce/aluminio.",
-    price: 26000,
+    price: 28000,
     originalPrice: null,
     discount: 0,
     images: [
@@ -1005,7 +1032,7 @@ export const products: Product[] = [
     name: "Escalera Telescópica 2 metros",
     description:
       "Escalera telescópica de 2 metros con soporte para 150kg. Súper reforzada y fácil de guardar. Disponible en varias medidas.",
-    price: 70000,
+    price: 55000,
     originalPrice: null,
     discount: 0,
     images: [
@@ -1051,7 +1078,7 @@ export const products: Product[] = [
     name: "Canilla Monocomando",
     description:
       "Canillas monocomando disponibles en blanco y negro. Importadas y con todos sus accesorios incluidos.",
-    price: 23000,
+    price: 28000,
     originalPrice: null,
     discount: 0,
     images: [
