@@ -1595,6 +1595,164 @@ export const products: Product[] = [
       },
     ],
   },
+  // NUEVOS PRODUCTOS - MANGUERAS Y POLIETILENO
+  {
+    id: "manguera-mallada-12-25m",
+    name: "Manguera Mallada 1/2\" x 25 m",
+    description:
+      "Manguera mallada reforzada de 1/2 pulgada por 25 metros. Material resistente y duradero para uso profesional.",
+    price: 35000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros4/1.jpg",
+      "/products/otros4/2.jpg",
+    ],
+    category: "verano",
+    stock: 15,
+    featured: true,
+    specifications: {
+      "Tipo": "Manguera Mallada",
+      "Diámetro": "1/2 pulgada",
+      "Longitud": "25 metros",
+      "Características": "Reforzada, resistente",
+      "Uso": "Profesional",
+    },
+  },
+  {
+    id: "manguera-mallada-34-25m",
+    name: "Manguera Mallada 3/4\" x 25 m",
+    description:
+      "Manguera mallada reforzada de 3/4 pulgada por 25 metros. Mayor capacidad de flujo para trabajos exigentes.",
+    price: 60000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros4/1.jpg",
+      "/products/otros4/2.jpg",
+    ],
+    category: "verano",
+    stock: 12,
+    featured: true,
+    specifications: {
+      "Tipo": "Manguera Mallada",
+      "Diámetro": "3/4 pulgada",
+      "Longitud": "25 metros",
+      "Características": "Reforzada, mayor capacidad",
+      "Uso": "Trabajos exigentes",
+    },
+  },
+  {
+    id: "manguera-mallada-1-25m",
+    name: "Manguera Mallada 1\" x 25 m",
+    description:
+      "Manguera mallada reforzada de 1 pulgada por 25 metros. Máxima capacidad para aplicaciones industriales.",
+    price: 85000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros4/1.jpg",
+      "/products/otros4/2.jpg",
+    ],
+    category: "verano",
+    stock: 8,
+    featured: true,
+    specifications: {
+      "Tipo": "Manguera Mallada",
+      "Diámetro": "1 pulgada",
+      "Longitud": "25 metros",
+      "Características": "Reforzada, máxima capacidad",
+      "Uso": "Aplicaciones industriales",
+    },
+  },
+  {
+    id: "manguera-pileta-14-30m",
+    name: "Manguera Pileta 1/4\" x 30 m",
+    description:
+      "Manguera para pileta de 1/4 pulgada por 30 metros. Ideal para conexiones de agua y sistemas de riego.",
+    price: 60000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros4/3.jpg",
+      "/products/otros4/4.jpg",
+    ],
+    category: "verano",
+    stock: 20,
+    featured: false,
+    specifications: {
+      "Tipo": "Manguera Pileta",
+      "Diámetro": "1/4 pulgada",
+      "Longitud": "30 metros",
+      "Uso": "Conexiones de agua, riego",
+    },
+  },
+  {
+    id: "manguera-pileta-12-30m",
+    name: "Manguera Pileta 1/2\" x 30 m",
+    description:
+      "Manguera para pileta de 1/2 pulgada por 30 metros. Mayor flujo para sistemas de agua más exigentes.",
+    price: 74000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros4/3.jpg",
+      "/products/otros4/4.jpg",
+    ],
+    category: "verano",
+    stock: 18,
+    featured: false,
+    specifications: {
+      "Tipo": "Manguera Pileta",
+      "Diámetro": "1/2 pulgada",
+      "Longitud": "30 metros",
+      "Uso": "Sistemas de agua exigentes",
+    },
+  },
+  {
+    id: "polietileno-cristal-2m-100m",
+    name: "Polietileno Cristal 2m x 100m",
+    description:
+      "Polietileno cristal transparente de 2 metros de ancho por 100 metros de largo. Ideal para cubiertas y protección.",
+    price: 120000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros4/5.jpg",
+    ],
+    category: ["tejidos-pvc-metal", "medias-sombras-lonas"],
+    stock: 10,
+    featured: true,
+    specifications: {
+      "Tipo": "Polietileno Cristal",
+      "Ancho": "2 metros",
+      "Largo": "100 metros",
+      "Características": "Transparente",
+      "Uso": "Cubiertas y protección",
+    },
+  },
+  {
+    id: "polietileno-cristal-3m-100m",
+    name: "Polietileno Cristal 3m x 100m",
+    description:
+      "Polietileno cristal transparente de 3 metros de ancho por 100 metros de largo. Mayor cobertura para proyectos grandes.",
+    price: 156000,
+    originalPrice: null,
+    discount: 0,
+    images: [
+      "/products/otros4/5.jpg",
+    ],
+    category: ["tejidos-pvc-metal", "medias-sombras-lonas"],
+    stock: 8,
+    featured: true,
+    specifications: {
+      "Tipo": "Polietileno Cristal",
+      "Ancho": "3 metros",
+      "Largo": "100 metros",
+      "Características": "Transparente, mayor cobertura",
+      "Uso": "Proyectos grandes",
+    },
+  },
 ]
 
 export const categories = [
